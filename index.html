@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Musandile Apartments | Luxury Living in Lusaka</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- CSS Reset & Variables ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #1e3c2c;
+      --primary-light: #2e5a3e;
+      --accent: #c6a15b;
+      --accent-light: #e5c687;
+      --light-bg: #f8f6f2;
+      --dark-text: #1e1e1e;
+      --gray-text: #4a4a4a;
+      --white: #ffffff;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ---------- Preloader ---------- */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .preloader-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--accent);
+      letter-spacing: 4px;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInLogo 1.2s forwards 0.2s;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .preloader-logo span {
+      font-size: 1rem;
+      display: block;
+      letter-spacing: 8px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      margin-top: 0.5rem;
+      opacity: 0.8;
+    }
+
+    .loader-bar {
+      width: 200px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loader-bar::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      animation: loadBar 2s ease-in-out forwards;
+    }
+
+    @keyframes loadBar {
+      0% { width: 0%; }
+      60% { width: 70%; }
+      100% { width: 100%; }
+    }
+
+    @keyframes fadeInLogo {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Preloader hidden class */
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* ---------- Navigation ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: background 0.3s ease, padding 0.3s ease;
+      background: transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 0.8rem 5%;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--white);
+      transition: color 0.3s ease;
+      letter-spacing: 1px;
+    }
+
+    nav.scrolled .nav-logo {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--dark-text);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--primary) !important;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(198, 161, 91, 0.3);
+    }
+
+    .nav-cta::after {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: var(--white);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    nav.scrolled .menu-toggle {
+      color: var(--primary);
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 5%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e3c2c 0%, #2e5a3e 100%);
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+      mix-blend-mode: overlay;
+      animation: slowZoom 25s infinite alternate;
+    }
+
+    @keyframes slowZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      color: var(--white);
+      opacity: 0;
+      animation: fadeInUp 1.2s forwards 0.5s;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-weight: 500;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .hero h1 i {
+      font-style: italic;
+      color: var(--accent-light);
+      font-weight: 400;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      font-weight: 300;
+      max-width: 550px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary, .btn-secondary {
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px rgba(198, 161, 91, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: rgba(198, 161, 91, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 5%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .hero-scroll i {
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* ---------- About Section ---------- */
+    .section {
+      padding: 7rem 5%;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .section-header .subtitle {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .section-header p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--gray-text);
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .about-image.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-text {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    }
+
+    .about-text.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .about-text h3 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p {
+      color: var(--gray-text);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .features-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .features-list i {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    /* ---------- Amenities Cards ---------- */
+    .amenities {
+      background: var(--white);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--light-bg);
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+      background: var(--white);
+    }
+
+    .card i {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover i {
+      transform: scale(1.1);
+    }
+
+    .card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+    }
+
+    .card p {
+      color: var(--gray-text);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ---------- Pricing Section ---------- */
+    .pricing {
+      background: linear-gradient(135deg, #1e3c2c 0%, #2e5a3e 100%);
+      color: var(--white);
+    }
+
+    .pricing .section-header h2 {
+      color: var(--white);
+    }
+
+    .pricing .section-header p {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .pricing-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .pricing-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--accent-light);
+    }
+
+    .pricing-price {
+      font-size: 3.5rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .pricing-price span {
+      font-size: 1rem;
+      font-weight: 300;
+      opacity: 0.7;
+    }
+
+    .pricing-desc {
+      margin-bottom: 2rem;
+      opacity: 0.8;
+      font-weight: 300;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 2.5rem;
+      text-align: left;
+      padding-left: 1rem;
+    }
+
+    .pricing-features li {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 300;
+    }
+
+    .pricing-features i {
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .pricing-card .btn-primary {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ---------- Location Section ---------- */
+    .location {
+      background: var(--white);
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .location-info {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .location-info.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .location-info h3 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .location-info p {
+      color: var(--gray-text);
+      margin-bottom: 2rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .contact-item i {
+      font-size: 1.4rem;
+      color: var(--accent);
+      background: rgba(198, 161, 91, 0.1);
+      padding: 1rem;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-item h5 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+      color: var(--primary);
+    }
+
+    .contact-item p {
+      margin-bottom: 0;
+      font-weight: 400;
+      color: var(--gray-text);
+    }
+
+    .map-container {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      height: 400px;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .map-container.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(0.3) contrast(1.1);
+      transition: filter 0.5s ease;
+    }
+
+    .map-container:hover iframe {
+      filter: grayscale(0) contrast(1);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--primary);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 4rem 5% 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1300px;
+      margin: 0 auto 3rem;
+    }
+
+    .footer-brand h3 {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 350px;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      color: var(--white);
+    }
+
+    .social-links a:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-4px);
+    }
+
+    .footer-links h4 {
+      color: var(--white);
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      font-weight: 300;
+      transition: color 0.3s ease, padding-left 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      font-weight: 300;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      .about-grid, .location-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .section {
+        padding: 5rem 5%;
+      }
+      .section-header h2 {
+        font-size: 2.2rem;
+      }
+      .features-list {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .hero-scroll {
+        display: none;
+      }
+    }
+
+    /* Mobile menu (simple) */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      max-width: 300px;
+      height: 100vh;
+      background: var(--primary);
+      z-index: 1001;
+      padding: 5rem 2rem;
+      transition: right 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu a {
+      color: var(--white);
+      font-size: 1.2rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.8rem;
+    }
+
+    .mobile-menu .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      Musandile
+      <span>Apartments</span>
+    </div>
+    <div class="loader-bar"></div>
+  </div>
+
+   <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-logo">Musandile</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#location">Contact</a></li>
+      <li><a href="#location" class="nav-cta">Book a Viewing</a></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeMenu"><i class="fas fa-times"></i></button>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#amenities">Amenities</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#location">Contact</a>
+    <a href="#location" style="color: var(--accent);">Book a Viewing</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Luxury Living in Lusaka</div>
+      <h1>Elevate Your <i>Lifestyle</i> at Musandile</h1>
+      <p>Experience high-class living in the heart of Lusaka. Newly built, spacious two-bedroom apartments with modern amenities and unmatched convenience.</p>
+      <div class="hero-buttons">
+        <a href="#pricing" class="btn-primary"><i class="fas fa-tag"></i> View Pricing</a>
+        <a href="#location" class="btn-secondary"><i class="fas fa-map-marker-alt"></i> Get Directions</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <i class="fas fa-chevron-down"></i> Scroll to explore
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle">About Us</span>
+        <h2>Modern Living, Redefined</h2>
+        <p>Musandile Apartments offers a perfect blend of comfort, security, and convenience for families and professionals.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-image" id="aboutImage">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop" alt="Musandile Apartments Interior">
+        </div>
+        <div class="about-text" id="aboutText">
+          <h3>Your New Home in Lusaka</h3>
+          <p>Located on Plot 9712 8th St, Musandile Apartments is a newly built complex featuring spacious two-bedroom apartments, each with a master self-contained layout. Every unit is designed with attention to detail, ensuring a pleasant living experience.</p>
+          <p>Residents enjoy modern amenities including tiled interiors, a borehole for consistent water supply, and comprehensive security services. Garbage collection is also included, ensuring a clean and comfortable living environment.</p>
+          <ul class="features-list">
+            <li><i class="fas fa-check-circle"></i> Spacious 2-Bedroom Units</li>
+            <li><i class="fas fa-check-circle"></i> Master Self-Contained</li>
+            <li><i class="fas fa-check-circle"></i> Tiled Interiors</li>
+            <li><i class="fas fa-check-circle"></i> Borehole Water Supply</li>
+            <li><i class="fas fa-check-circle"></i> 24/7 Security</li>
+            <li><i class="fas fa-check-circle"></i> Garbage Collection</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- Amenities Section -->
+  <section class="section amenities" id="amenities">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle">Amenities</span>
+        <h2>Everything You Need</h2>
+        <p>We've included essential services to enhance your overall value and living experience.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card" data-delay="0">
+          <i class="fas fa-shield-alt"></i>
+          <h4>Comprehensive Security</h4>
+          <p>Round-the-clock security services ensure a safe and secure environment for you and your family.</p>
+        </div>
+        <div class="card" data-delay="100">
+          <i class="fas fa-water"></i>
+          <h4>Borehole Water Supply</h4>
+          <p>Consistent and reliable water supply from our dedicated borehole, so you never have to worry.</p>
+        </div>
+        <div class="card" data-delay="200">
+          <i class="fas fa-trash-alt"></i>
+          <h4>Garbage Collection</h4>
+          <p>Included garbage collection services keep the complex clean and hygienic at all times.</p>
+        </div>
+        <div class="card" data-delay="300">
+          <i class="fas fa-border-all"></i>
+          <h4>Tiled Interiors</h4>
+          <p>Modern, easy-to-maintain tiled interiors that add a touch of elegance to every apartment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle" style="color: var(--accent-light);">Pricing</span>
+        <h2>Competitive Rental Rates</h2>
+        <p>Quality housing at attractive prices. Choose the apartment that suits your needs.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card" data-delay="0">
+          <h3>Standard 2-Bedroom</h3>
+          <div class="pricing-price">K8,500<span>/month</span></div>
+          <p class="pricing-desc">Perfect for small families or professionals</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Spacious 2 Bedrooms</li>
+            <li><i class="fas fa-check"></i> Master Self-Contained</li>
+            <li><i class="fas fa-check"></i> Tiled Interiors</li>
+            <li><i class="fas fa-check"></i> Borehole Water</li>
+            <li><i class="fas fa-check"></i> 24/7 Security</li>
+          </ul>
+          <a href="#location" class="btn-primary">Inquire Now</a>
+        </div>
+        <div class="pricing-card" data-delay="150">
+          <h3>Premium 2-Bedroom</h3>
+          <div class="pricing-price">K10,000<span>/month</span></div>
+          <p class="pricing-desc">Enhanced features for extra comfort</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> All Standard Features</li>
+            <li><i class="fas fa-check"></i> Larger Living Space</li>
+            <li><i class="fas fa-check"></i> Premium Finishes</li>
+            <li><i class="fas fa-check"></i> Priority Maintenance</li>
+            <li><i class="fas fa-check"></i> Garbage Collection</li>
+          </ul>
+          <a href="#location" class="btn-primary">Inquire Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Contact Section -->
+  <section class="section location" id="location">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle">Location & Contact</span>
+        <h2>Find Us in Lusaka</h2>
+        <p>Strategically located within reach of essential services and local attractions.</p>
+      </div>
+      <div class="location-grid">
+        <div class="location-info" id="locationInfo">
+          <h3>Get in Touch</h3>
+          <p>Reach out to Musandile Apartments for more information about available units and services. We'd love to hear from you.</p>
+          
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h5>Address</h5>
+              <p>Plot 9712 8th St, Lusaka, Lusaka Province, Zambia</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <div>
+              <h5>Phone</h5>
+              <p>+260 977 177 6663</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h5>Viewing Hours</h5>
+              <p>Mon - Sat: 9:00 AM - 5:00 PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="map-container" id="mapContainer">
+          <!-- Lusaka area map -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123456.78901234567!2d28.300000!3d-15.400000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLusaka!5e0!3m2!1sen!2szm!4v1600000000000!5m2!1sen!2szm" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Musandile</h3>
+        <p>High-class living in Lusaka, Zambia. Newly built apartments with modern amenities and competitive prices.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <ul>
+          <li>Plot 9712 8th St</li>
+          <li>Lusaka, Zambia</li>
+          <li>+260 977 177 6663</li>
+          <li>info@musandile.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Musandile Apartments. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for quality living.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Preloader
+      const preloader = document.getElementById('preloader');
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          preloader.classList.add('hidden');
+        }, 2000);
+      });
+
+      // Navbar scroll effect
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // Mobile menu
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMenu = document.getElementById('closeMenu');
+
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+      });
+
+      closeMenu.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+
+      // Close mobile menu on link click
+      document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+        });
+      });
+
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const delay = el.dataset.delay || 0;
+            setTimeout(() => {
+              el.classList.add('visible');
+            }, delay);
+            observer.unobserve(el);
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements
+      document.querySelectorAll('.about-image, .about-text, .location-info, .map-container, .card, .pricing-card').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Hero content animation (already in CSS, but just in case)
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Add staggered animation to cards on load if they are in view
+      // The observer handles this, but we can also trigger for cards that are already visible
+      // For simplicity, the observer does the work.
+    })();
+  </script>
+</body>
+</html>

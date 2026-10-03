@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CK TechFix | Doorstep Tech Guru in Lusaka</title>
+    <title>CK TECHFIX - Doorstep Tech Guru in Lusaka</title>
     <style>
-        /* --- RESET & VARIABLES --- */
+        /* --- CSS VARIABLES (Based on your CK TECHFIX Logo) --- */
+        :root {
+            --primary-dark: #0B1B36; /* Deep Blue from your logo */
+            --primary-blue: #1E3A8A; /* Standard Blue */
+            --accent-cyan: #00AEEF;  /* Bright Cyan from your logo */
+            --bg-light: #F8F9FA;
+            --text-dark: #1A1A1A;
+            --text-muted: #666666;
+            --border-color: #E5E7EB;
+            --white: #FFFFFF;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,42 +24,19 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
-        :root {
-            --primary-blue: #1E3A8A; /* Matches CK TechFix logo */
-            --accent-blue: #00BFFF;  /* Bright cyan from logo */
-            --dark-bg: #0F172A;      /* Dark navy for hero/footer */
-            --light-bg: #F8FAFC;     /* Off-white background */
-            --text-dark: #1E293B;
-            --text-light: #64748B;
-            --white: #FFFFFF;
-        }
-
         body {
-            background-color: var(--light-bg);
+            background-color: var(--white);
             color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            line-height: 1.5;
         }
 
         /* --- HEADER --- */
         header {
-            background-color: var(--white);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
+            padding: 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--white);
         }
 
         .logo-container {
@@ -57,106 +45,89 @@
             gap: 10px;
         }
 
-        /* Placeholder for your Logo Image */
-        .logo-img {
+        .logo-icon {
+            /* Placeholder for your logo image */
+            width: 50px;
             height: 50px;
-            width: auto;
-            /* Replace this with your actual logo image */
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            background: var(--primary-blue);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            padding: 0 15px;
-            font-size: 1.2rem;
+            font-size: 20px;
         }
 
-        .header-cta {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            color: var(--primary-dark);
+            letter-spacing: 1px;
+            margin-bottom: -5px;
+        }
+
+        .logo-text span {
+            font-size: 12px;
+            color: var(--primary-blue);
             font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .header-cta:hover {
-            background-color: var(--accent-blue);
+            letter-spacing: 2px;
         }
 
         /* --- HERO SECTION --- */
         .hero {
-            background-color: var(--dark-bg);
+            background-color: var(--primary-dark);
             color: var(--white);
-            padding: 80px 0;
             text-align: center;
+            padding: 60px 20px;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: #CBD5E1;
-            max-width: 700px;
-            margin: 0 auto 30px;
+            font-size: 18px;
+            font-weight: 400;
         }
 
-        .hero-btn {
-            background-color: var(--accent-blue);
-            color: var(--white);
-            padding: 15px 35px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            display: inline-block;
-            transition: transform 0.2s, background 0.3s;
-        }
-
-        .hero-btn:hover {
-            background-color: #009ACD;
-            transform: translateY(-2px);
-        }
-
-        /* --- PROGRESS TRACKER --- */
-        .progress-section {
-            padding: 40px 0;
-            background: var(--white);
-            border-bottom: 1px solid #E2E8F0;
-        }
-
-        .progress-tracker {
+        /* --- WIZARD PROGRESS BAR --- */
+        .wizard-progress {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
+            padding: 40px 20px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .step {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            position: relative;
+            flex: 1;
         }
 
         .step-circle {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background-color: #E2E8F0;
-            color: var(--text-light);
+            background-color: #E5E7EB;
+            color: var(--text-muted);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 18px;
+            z-index: 2;
+            transition: all 0.3s ease;
         }
 
         .step.active .step-circle {
@@ -164,255 +135,308 @@
             color: var(--white);
         }
 
-        .step span {
-            font-size: 0.9rem;
+        .step-label {
+            margin-top: 10px;
+            font-size: 14px;
             font-weight: 600;
-            color: var(--text-light);
+            color: var(--text-muted);
         }
 
-        .step.active span {
-            color: var(--primary-blue);
+        .step.active .step-label {
+            color: var(--text-dark);
         }
 
-        .step-line {
-            width: 60px;
+        /* Connecting Line */
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 100%;
             height: 4px;
-            background-color: #E2E8F0;
-            border-radius: 2px;
-            margin-bottom: 25px;
+            background-color: #E5E7EB;
+            z-index: 1;
         }
 
-        /* --- BOOKING FORM SECTION --- */
-        .booking-section {
-            padding: 60px 0;
-            background-color: var(--light-bg);
+        .step.active:not(:last-child)::after {
+            background-color: var(--primary-blue);
         }
 
-        .booking-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
+        /* --- SEARCH SECTION --- */
+        .search-section {
+            padding: 0 20px 40px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .booking-header h2 {
-            font-size: 2rem;
-        }
-
-        .booking-header h2 span {
+        .search-label {
+            font-size: 22px;
+            margin-bottom: 20px;
             font-weight: 400;
-            color: var(--text-light);
         }
 
-        .search-box {
-            background: var(--white);
+        .search-label strong {
+            font-weight: 700;
+        }
+
+        .search-box-container {
+            background-color: var(--bg-light);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
         }
 
-        .search-input-group {
+        .input-group {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
-        .search-input-group input {
+        .input-wrapper {
+            position: relative;
             flex: 1;
-            padding: 15px;
-            border: 2px solid #E2E8F0;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 18px 50px 18px 20px;
+            border: 2px solid var(--border-color);
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 16px;
             outline: none;
             transition: border 0.3s;
         }
 
-        .search-input-group input:focus {
-            border-color: var(--accent-blue);
+        .input-wrapper input:focus {
+            border-color: var(--primary-blue);
         }
 
-        .search-btn {
-            background-color: var(--accent-blue);
-            color: white;
-            border: none;
-            padding: 0 25px;
-            border-radius: 8px;
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #E0F2FE;
+            color: var(--primary-blue);
+            width: 35px;
+            height: 35px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            font-size: 1.2rem;
         }
 
-        /* Device Grid */
+        .phone-icon {
+            width: 40px;
+            height: 80px;
+            border: 2px solid var(--primary-blue);
+            border-radius: 8px;
+            position: relative;
+        }
+        .phone-icon::after {
+            content: '?';
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            background: var(--primary-blue);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .type-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+        }
+
+        /* --- DEVICE GRID --- */
         .device-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 60px;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .device-card {
             background: var(--white);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 30px;
+            padding: 30px 20px;
             text-align: center;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #E2E8F0;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
 
         .device-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-color: var(--accent-blue);
+            border-color: var(--primary-blue);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        .device-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: var(--primary-blue);
+        /* Placeholder Icons using SVG */
+        .device-card svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--text-muted);
+        }
+        .device-card:hover svg {
+            fill: var(--primary-blue);
         }
 
-        .device-card h3 {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-light);
+        .device-card span {
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            color: var(--text-dark);
         }
 
-        /* --- LOCATION & PROCESS SECTION --- */
-        .process-section {
-            padding: 60px 0;
-            background: var(--white);
+        /* --- LUSAKA AREA SECTION --- */
+        .area-section {
+            background-color: var(--bg-light);
+            padding: 60px 20px;
+            margin-top: 40px;
         }
 
-        .process-location {
-            font-size: 2.5rem;
-            color: var(--dark-bg);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
+        .area-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .process-location::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 60px;
+        .area-header h3 {
+            font-size: 32px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .underline-accent {
             height: 4px;
-            background-color: var(--accent-blue);
+            width: 60px;
+            background-color: var(--accent-cyan);
+            margin-bottom: 20px;
         }
 
-        .process-subtext {
-            color: var(--text-light);
+        .area-header p {
+            color: var(--text-muted);
+            font-size: 16px;
             margin-bottom: 40px;
-            font-size: 1.1rem;
         }
 
-        .steps-container {
+        /* Timeline Steps */
+        .timeline {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 20px;
         }
 
-        .step-item {
+        .timeline-item {
             display: flex;
             gap: 20px;
-            align-items: flex-start;
         }
 
-        .step-number-box {
+        .timeline-icon {
             width: 60px;
             height: 60px;
-            background-color: #FFEDD5;
-            color: #EA580C;
+            background: #FEF3C7; /* Light orange/yellow for contrast */
+            border: 1px solid #FDE68A;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
             flex-shrink: 0;
+            color: #D97706;
+            font-weight: bold;
+            font-size: 20px;
         }
 
-        .step-content h3 {
-            font-size: 1.4rem;
+        .timeline-text h4 {
+            font-size: 20px;
             margin-bottom: 5px;
-            color: var(--dark-bg);
+            color: var(--text-dark);
         }
 
-        .step-content p {
-            color: var(--text-light);
+        .timeline-text p {
+            color: var(--text-muted);
+            font-size: 15px;
         }
 
         /* --- VIDEO SECTION --- */
         .video-section {
-            padding: 60px 0;
-            background: var(--dark-bg);
-            text-align: center;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
         }
 
         .video-container {
+            width: 100%;
             max-width: 400px;
-            margin: 0 auto;
             background: #000;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
+            /* Aspect ratio for portrait video */
+            aspect-ratio: 9/16; 
         }
 
         .video-placeholder {
             width: 100%;
-            height: 600px;
-            background: linear-gradient(45deg, #1E293B, #0F172A);
+            height: 100%;
+            background: #1a1a1a;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: #64748B;
-            font-size: 1.2rem;
-            position: relative;
-        }
-
-        .video-overlay {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.7);
-            padding: 15px;
-            border-radius: 8px;
             color: white;
-            text-align: left;
+            text-align: center;
+            padding: 20px;
         }
 
-        .video-overlay h4 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        .video-overlay p {
-            font-size: 0.85rem;
-            color: #CBD5E1;
+        .tiktok-btn {
+            background: #FE2C55;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
         }
 
         /* --- FOOTER --- */
         footer {
-            background-color: var(--dark-bg);
-            color: #94A3B8;
+            background-color: var(--primary-dark);
+            color: #9CA3AF;
             text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid #1E293B;
+            padding: 40px 20px;
+            font-size: 14px;
         }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 1.8rem; }
-            .progress-tracker { flex-wrap: wrap; }
-            .step-line { display: none; }
-            .device-grid { grid-template-columns: repeat(2, 1fr); }
-            .booking-header { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .search-input-group { flex-direction: column; }
-            .search-btn { padding: 15px; }
+        @media (min-width: 768px) {
+            .hero h2 { font-size: 36px; }
+            .device-grid { grid-template-columns: repeat(4, 1fr); }
+            .area-header h3 { font-size: 40px; }
+            .timeline { flex-direction: row; justify-content: space-between; text-align: center; }
+            .timeline-item { flex-direction: column; align-items: center; gap: 10px; }
+            .timeline-icon { margin-bottom: 10px; }
         }
     </style>
 </head>
@@ -420,109 +444,118 @@
 
     <!-- HEADER -->
     <header>
-        <div class="container header-content">
-            <div class="logo-container">
-                <!-- Replace the div below with your actual logo image -->
-                <div class="logo-img">CK TECHFIX</div>
-                <!-- <img src="your-logo.png" alt="CK TechFix Logo" class="logo-img"> -->
+        <div class="logo-container">
+            <!-- I added a placeholder icon. You would replace this with an <img> tag of your actual logo -->
+            <div class="logo-icon">CK</div>
+            <div class="logo-text">
+                <h1>CK</h1>
+                <span>TECHFIX</span>
             </div>
-            <a href="#book" class="header-cta">Book Now</a>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO BANNER -->
     <section class="hero">
-        <div class="container">
-            <h1>Lusaka's First Mobile Repair Shop.<br>We come to you!</h1>
-            <p>Professional doorstep repair for smartphones, laptops, tablets, and smartwatches across Lusaka, Zambia.</p>
-            <a href="#book" class="hero-btn">Book a Repair</a>
+        <h2>Lusaka's First Mobile Repair Shop.</h2>
+        <p>We come to you!</p>
+    </section>
+
+    <!-- PROGRESS WIZARD -->
+    <section class="wizard-progress">
+        <div class="step active">
+            <div class="step-circle">1</div>
+            <div class="step-label">Devices</div>
+        </div>
+        <div class="step">
+            <div class="step-circle">2</div>
+            <div class="step-label">Repairs</div>
+        </div>
+        <div class="step">
+            <div class="step-circle">3</div>
+            <div class="step-label">Finalize</div>
         </div>
     </section>
 
-    <!-- PROGRESS TRACKER -->
-    <section class="progress-section">
-        <div class="container progress-tracker">
-            <div class="step active">
-                <div class="step-circle">1</div>
-                <span>Devices</span>
+    <!-- SEARCH & DEVICE SELECTOR -->
+    <section class="search-section">
+        <div class="search-label">
+            Which <strong>model</strong> do you have?
+        </div>
+
+        <div class="search-box-container">
+            <!-- Search Input -->
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <input type="text" placeholder="Type in your brand, model or model code.">
+                    <div class="search-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                </div>
+                <div class="phone-icon"></div>
             </div>
-            <div class="step-line"></div>
-            <div class="step">
-                <div class="step-circle">2</div>
-                <span>Repairs</span>
+            
+            <div class="type-selector">
+                <div class="dot"></div>
+                <span>Or select your <strong>type</strong></span>
             </div>
-            <div class="step-line"></div>
-            <div class="step">
-                <div class="step-circle">3</div>
-                <span>Finalize</span>
+        </div>
+
+        <!-- Device Grid -->
+        <div class="device-grid">
+            <!-- Smartphone -->
+            <div class="device-card">
+                <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                <span>SMARTPHONE</span>
+            </div>
+            <!-- Tablet -->
+            <div class="device-card">
+                <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                <span>TABLET</span>
+            </div>
+            <!-- Watch -->
+            <div class="device-card">
+                <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5 5 5 0 0 0 5-5V7a5 5 0 0 0-5-5z"></path><path d="M9 2h6v3H9z"></path><path d="M9 19h6v3H9z"></path></svg>
+                <span>WATCH</span>
+            </div>
+            <!-- Laptop -->
+            <div class="device-card">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" ry="2"></rect><path d="M2 20h20"></path><path d="M5 20v-2h14v2"></path></svg>
+                <span>LAPTOP</span>
             </div>
         </div>
     </section>
 
-    <!-- BOOKING FORM / DEVICE SELECTION -->
-    <section class="booking-section" id="book">
-        <div class="container">
-            <div class="booking-header">
-                <h2>Which <span>model</span> do you have?</h2>
-                <span>🇿🇲 ZM</span>
+    <!-- LUSAKA AREA INFO SECTION -->
+    <section class="area-section">
+        <div class="area-content">
+            <div class="area-header">
+                <h3>Lusaka Area</h3>
+                <div class="underline-accent"></div>
+                <p>We're based in <strong>Lusaka, Zambia</strong>, and we service all surrounding neighborhoods and business districts.</p>
             </div>
 
-            <div class="search-box">
-                <p style="font-weight: 600; margin-bottom: 10px;">Type in your <strong>brand, model</strong> or <strong>model code</strong>.</p>
-                <div class="search-input-group">
-                    <input type="text" placeholder="e.g., iPhone 12 Pro Max, Samsung S21...">
-                    <button class="search-btn">🔍</button>
-                </div>
-            </div>
-
-            <p style="margin-bottom: 20px; font-weight: 600;">Or select your <strong>type</strong></p>
-
-            <div class="device-grid">
-                <div class="device-card">
-                    <div class="device-icon">📱</div>
-                    <h3>Smartphone</h3>
-                </div>
-                <div class="device-card">
-                    <div class="device-icon">💻</div>
-                    <h3>Laptop</h3>
-                </div>
-                <div class="device-card">
-                    <div class="device-icon">⌚</div>
-                    <h3>Watch</h3>
-                </div>
-                <div class="device-card">
-                    <div class="device-icon">📟</div>
-                    <h3>Tablet</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- LOCATION & PROCESS SECTION -->
-    <section class="process-section">
-        <div class="container">
-            <h2 class="process-location">Lusaka Area</h2>
-            <p class="process-subtext">We're based in Lusaka, Zambia, but we also service surrounding areas including Kabwe, Chongwe, and Kafue.</p>
-
-            <div class="steps-container">
-                <div class="step-item">
-                    <div class="step-number-box">✓</div>
-                    <div class="step-content">
-                        <h3>Select Device</h3>
+            <div class="timeline">
+                <!-- Step 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">✓</div>
+                    <div class="timeline-text">
+                        <h4>Select Device</h4>
                         <p>Choose the device you need repaired.</p>
                     </div>
                 </div>
-                <div class="step-item">
-                    <div class="step-number-box">✓</div>
-                    <div class="step-content">
-                        <h3>Choose Repair Type</h3>
+                <!-- Step 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">✓</div>
+                    <div class="timeline-text">
+                        <h4>Choose Repair Type</h4>
                         <p>Tell us the issue with your device.</p>
                     </div>
                 </div>
-                <div class="step-item">
-                    <div class="step-number-box">✓</div>
-                    <div class="step-content">
-                        <h3>Book Appointment</h3>
+                <!-- Step 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">✓</div>
+                    <div class="timeline-text">
+                        <h4>Book Appointment</h4>
                         <p>Choose a desired appointment time. We'll try our best to schedule your service as close as possible to your preferred time slot.</p>
                     </div>
                 </div>
@@ -530,29 +563,21 @@
         </div>
     </section>
 
-    <!-- VIDEO SECTION (TikTok Placeholder) -->
+    <!-- VIDEO SECTION (Placeholder for TikTok) -->
     <section class="video-section">
-        <div class="container">
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <!-- Replace this div with an actual TikTok embed iframe -->
-                    <p>Video Player Placeholder</p>
-                    <div class="video-overlay">
-                        <h4>@cktechfix</h4>
-                        <p>Customer's Jaw DROPPED After This iPhone 14 Pro Transformation ...See more</p>
-                        <p style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">🎵 Storytelling - Adriel</p>
-                    </div>
-                </div>
+        <div class="video-container">
+            <div class="video-placeholder">
+                <h3>CK TECHFIX in Action</h3>
+                <p>Watch how we fix devices right at your doorstep.</p>
+                <a href="#" class="tiktok-btn">Watch on TikTok</a>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <div class="container">
-            <p>&copy; 2026 CK TechFix. All rights reserved.</p>
-        </div>
+        &copy; 2025 CK Techfix. All rights reserved. Lusaka, Zambia.
     </footer>
 
 </body>
-  </html>
+    </html>

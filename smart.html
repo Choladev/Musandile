@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CK TechFix - Lusaka Area</title>
+    <title>CK TechFix - Doorstep Mobile Repair Lusaka</title>
     <style>
-        /* --- CSS VARIABLES --- */
+        /* --- CSS VARIABLES (CK TechFix Colors) --- */
         :root {
             --brand-dark-blue: #0A1C3A;
             --brand-blue: #0047AB;
+            --brand-cyan: #00A8E8;
             --text-dark: #1A1A1A;
             --text-light: #666666;
             --bg-light: #F8F9FA;
             --white: #FFFFFF;
-            --orange-accent: #E6A23C; /* Matches the orange in the screenshot */
+            --orange-accent: #E6A23C;
         }
 
         /* --- GLOBAL RESET --- */
@@ -30,10 +31,211 @@
             line-height: 1.6;
         }
 
-        /* --- DARK HEADER BLOCK (Top of screenshot) --- */
-        .dark-header {
+        /* --- HEADER / NAV --- */
+        header {
+            background-color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--brand-dark-blue);
+        }
+
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+            background: var(--brand-blue);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
             background-color: var(--brand-dark-blue);
-            height: 80px; /* Simulating the top dark bar */
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px 100px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            border-bottom: 4px solid var(--orange-accent);
+            padding-bottom: 5px;
+        }
+
+        /* --- BOOKING WIDGET (Floating Card) --- */
+        .booking-widget {
+            background-color: var(--white);
+            max-width: 800px;
+            margin: -60px auto 40px auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #E0E0E0;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+
+        .step {
+            background-color: #E0E0E0;
+            color: var(--text-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            z-index: 2;
+            position: relative;
+        }
+
+        .step.active {
+            background-color: var(--brand-blue);
+            color: var(--white);
+        }
+
+        .step-label {
+            position: absolute;
+            top: 45px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        .step.active + .step-label {
+            color: var(--brand-blue);
+            font-weight: bold;
+        }
+
+        /* Search Input */
+        .search-section {
+            margin-top: 60px;
+        }
+
+        .search-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .search-section h2 span {
+            font-weight: normal;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 30px;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--brand-cyan);
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            font-size: 1.1rem;
+            padding: 10px 0;
+            color: var(--text-dark);
+        }
+
+        .search-box input::placeholder {
+            color: #A0A0A0;
+        }
+
+        .search-icon {
+            color: var(--brand-blue);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Device Selection Grid */
+        .device-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .device-card {
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .device-card:hover {
+            border-color: var(--brand-cyan);
+            background-color: #F0F8FF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .device-card svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .device-card:hover svg {
+            fill: var(--brand-blue);
+        }
+
+        .device-card span {
+            display: block;
+            font-weight: bold;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
         /* --- AREA & PROCESS SECTION --- */
@@ -41,7 +243,6 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px 80px 20px;
-            background-color: var(--bg-light);
         }
 
         .area-header h2 {
@@ -49,7 +250,7 @@
             color: var(--text-dark);
             margin-bottom: 10px;
             display: inline-block;
-            border-bottom: 5px solid var(--orange-accent); /* The orange underline */
+            border-bottom: 5px solid var(--orange-accent);
             padding-bottom: 2px;
         }
 
@@ -65,20 +266,19 @@
             color: var(--text-dark);
         }
 
-        /* Vertical Steps */
+        /* Vertical Process Steps */
         .process-steps {
             display: flex;
             flex-direction: column;
-            gap: 0; /* Remove gap to connect the vertical line */
+            gap: 0;
             position: relative;
         }
 
-        /* The vertical line connecting the steps */
         .process-steps::before {
             content: '';
             position: absolute;
             top: 25px;
-            left: 35px; /* Center of the icon (50px width / 2 = 25px + 10px padding) */
+            left: 35px;
             bottom: 25px;
             width: 2px;
             background-color: #E0E0E0;
@@ -97,14 +297,13 @@
             padding-bottom: 0;
         }
 
-        /* Orange Checkbox Icons */
         .step-icon {
-            background-color: #FFF8F0; /* Light orange background */
+            background-color: #FFF8F0;
             border: 2px solid var(--orange-accent);
             color: var(--orange-accent);
             width: 50px;
             height: 50px;
-            border-radius: 12px; /* Rounded square */
+            border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -131,31 +330,41 @@
 
         /* --- FOOTER --- */
         footer {
-            background-color: #061224; /* Very dark navy, matching the bottom bar */
+            background-color: #061224;
             color: #8892B0;
             text-align: center;
             padding: 40px 20px;
             font-size: 0.95rem;
-            border-top: 1px solid #1A2B4C; /* Subtle divider line */
+            border-top: 1px solid #1A2B4C;
         }
 
-        /* --- MEDIA QUERIES (Mobile) --- */
-        @media (max-width: 600px) {
+        footer p {
+            margin-bottom: 5px;
+        }
+
+        /* --- MEDIA QUERIES (Mobile Responsiveness) --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .booking-widget {
+                margin: -40px 15px 30px 15px;
+                padding: 20px;
+            }
+
+            .device-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
             .area-header h2 {
                 font-size: 1.8rem;
             }
-            .area-header p {
-                font-size: 1rem;
-            }
-            .step-content h3 {
-                font-size: 1.2rem;
-            }
-            .step-content p {
-                font-size: 0.95rem;
-            }
+
             .process-steps::before {
-                left: 25px; /* Adjust line position for smaller icons */
+                left: 25px;
             }
+
             .step-icon {
                 width: 42px;
                 height: 42px;
@@ -166,15 +375,74 @@
 </head>
 <body>
 
-    <!-- TOP DARK BLOCK (Just for visual context, remove if integrating into existing page) -->
-    <div class="dark-header"></div>
+    <!-- HEADER -->
+    <header>
+        <div class="logo-container">
+            <!-- Replace the div below with your actual logo image tag if you have one -->
+            <!-- <img src="your-logo.png" alt="CK TechFix Logo" class="logo-img"> -->
+            <div class="logo-img">CK TechFix</div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Lusaka's First Mobile Repair Shop.<br>We <span>come to you!</span></h1>
+    </section>
+
+    <!-- BOOKING WIDGET -->
+    <div class="booking-widget">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="step active">1
+                <span class="step-label">Devices</span>
+            </div>
+            <div class="step">2
+                <span class="step-label">Repairs</span>
+            </div>
+            <div class="step">3
+                <span class="step-label">Finalize</span>
+            </div>
+        </div>
+
+        <!-- Search and Select -->
+        <div class="search-section">
+            <h2>Which <strong>model</strong> do you have?</h2>
+            
+            <div class="search-box">
+                <input type="text" id="deviceSearch" placeholder="Type in your brand, model or model code (e.g., iPhone 12 Pro Max)">
+                <div class="search-icon" onclick="searchDevice()">🔍</div>
+            </div>
+
+            <p style="margin-bottom: 15px; color: var(--text-light); font-size: 0.9rem;">
+                <span style="color: var(--brand-blue);">●</span> Or select your type
+            </p>
+
+            <!-- Device Icons Grid -->
+            <div class="device-grid">
+                <div class="device-card" onclick="selectDevice('Phone')">
+                    <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                    <span>Phone</span>
+                </div>
+                <div class="device-card" onclick="selectDevice('Tablet')">
+                    <svg viewBox="0 0 24 24"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H3V6h18v12z"/></svg>
+                    <span>Tablet</span>
+                </div>
+                <div class="device-card" onclick="selectDevice('Watch')">
+                    <svg viewBox="0 0 24 24"><path d="M20 12c0-2.54-1.19-4.81-3.04-6.27L16 0H8l-.95 5.73C5.19 7.19 4 9.45 4 12s1.19 4.81 3.05 6.27L8 24h8l.96-5.73C18.81 16.81 20 14.54 20 12zM6 12c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6z"/></svg>
+                    <span>Watch</span>
+                </div>
+                <div class="device-card" onclick="selectDevice('Laptop')">
+                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                    <span>Laptop</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- AREA & PROCESS SECTION -->
     <section class="area-process">
         <div class="area-header">
-            <!-- CHANGED TO LUSAKA -->
             <h2>Lusaka Area</h2>
-            <!-- CHANGED LOCATION TEXT -->
             <p>We’re based in <strong>Lusaka, Zambia</strong>, but we also service the surrounding areas including Kabulonga, Woodlands, Roma, Chelston, and the CBD.</p>
         </div>
 
@@ -209,7 +477,39 @@
     <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 CK TechFix</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #5A6B8A;">Doorstep Tech Guru - Lusaka, Zambia</p>
     </footer>
+
+    <!-- JAVASCRIPT FOR INTERACTION -->
+    <script>
+        // Function to handle the search button
+        function searchDevice() {
+            const input = document.getElementById('deviceSearch').value;
+            if(input) {
+                // Save the search term and redirect to brands page
+                localStorage.setItem('deviceSearch', input);
+                window.location.href = 'brands.html';
+            } else {
+                alert("Please type in a device model first.");
+            }
+        }
+
+        // Allow pressing "Enter" in the search box to trigger search
+        document.getElementById('deviceSearch').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                searchDevice();
+            }
+        });
+
+        // Function to handle clicking the device cards (Phone, Tablet, etc.)
+        function selectDevice(type) {
+            // Save the device type to local storage
+            localStorage.setItem('deviceType', type);
+            
+            // Redirect the user to the brands page
+            window.location.href = 'brands.html';
+        }
+    </script>
 
 </body>
 </html>

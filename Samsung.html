@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Samsung Model - CK TechFix Lusaka</title>
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --brand-dark-blue: #0A1C3A;
+            --brand-blue: #0047AB;
+            --brand-cyan: #00A8E8;
+            --text-dark: #1A1A1A;
+            --text-light: #666666;
+            --bg-light: #F8F9FA;
+            --white: #FFFFFF;
+            --orange-accent: #F5A623;
+            --light-blue-bg: #E6F2FF; 
+            --badge-blue: #0066CC;
+        }
+
+        /* --- GLOBAL RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--brand-dark-blue);
+        }
+
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+            background: var(--brand-blue);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* --- PROGRESS BAR --- */
+        .progress-container {
+            background-color: var(--white);
+            padding: 30px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #E0E0E0;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+
+        .step {
+            background-color: #E0E0E0;
+            color: var(--text-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            z-index: 2;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            background-color: var(--brand-blue);
+            color: var(--white);
+        }
+
+        .step.completed {
+            background-color: var(--brand-blue);
+            color: var(--white);
+        }
+
+        .step-label {
+            position: absolute;
+            top: 45px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            white-space: nowrap;
+            text-align: center;
+            width: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .step.active + .step-label {
+            color: var(--brand-blue);
+            font-weight: bold;
+        }
+
+        /* --- MAIN CONTENT AREA --- */
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px 60px 20px;
+        }
+
+        /* Header with Back Button */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            margin-top: 40px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-btn {
+            background-color: var(--light-blue-bg);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: var(--brand-blue);
+            font-size: 1.2rem;
+            transition: background-color 0.2s;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background-color: #CCE5FF;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .section-header h2 strong {
+            font-weight: 700;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Filter and Search Row */
+        .filter-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            background-color: var(--badge-blue);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn span {
+            background-color: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
+        .search-model-box {
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+            border: 2px solid var(--brand-cyan);
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .search-model-box svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--brand-blue);
+            margin-right: 10px;
+        }
+
+        .search-model-box input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        .search-model-box input::placeholder {
+            color: #A0A0A0;
+        }
+
+        /* Model Grid */
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .model-card {
+            background-color: var(--white);
+            border: 1px solid #EAEAEA;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            height: 100%;
+        }
+
+        .model-card:hover {
+            border-color: var(--brand-cyan);
+            box-shadow: 0 4px 12px rgba(0, 168, 232, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Special "Find my model" card */
+        .model-card.find-model {
+            justify-content: center;
+            border: 2px dashed #E0E0E0;
+            background-color: #FAFAFA;
+        }
+
+        .model-card.find-model:hover {
+            border-color: var(--brand-blue);
+            background-color: #F0F8FF;
+        }
+
+        .find-icon {
+            width: 60px;
+            height: 80px;
+            border: 2px solid var(--brand-blue);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+            background-color: #E6F2FF;
+        }
+
+        .find-icon::after {
+            content: '?';
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            background-color: var(--brand-blue);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: 2px solid white;
+        }
+
+        .model-card.find-model h3 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        /* Standard Device Card Content */
+        .device-image-container {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .device-image-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .model-card h3 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .model-card p {
+            font-size: 0.85rem;
+            color: var(--brand-blue);
+            word-break: break-all;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #061224;
+            color: #8892B0;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 600px) {
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .model-grid {
+                grid-template-columns: repeat(2, 1fr); /* Keep 2 columns on mobile */
+                gap: 10px;
+            }
+
+            .device-image-container {
+                height: 100px;
+            }
+
+            .model-card h3 {
+                font-size: 0.95rem;
+            }
+            
+            .model-card p {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-img">CK TechFix</div>
+        </div>
+    </header>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="step completed">1
+                <span class="step-label">Devices</span>
+            </div>
+            <div class="step active">2
+                <span class="step-label" style="color: var(--brand-blue); font-weight: bold;">Repairs</span>
+            </div>
+            <div class="step">3
+                <span class="step-label">Finalize</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        
+        <!-- Section Header with Back Button -->
+        <div class="section-header">
+            <div class="header-left">
+                <!-- Links back to the brand selection page -->
+                <a href="smartphones.html" class="back-btn">←</a>
+                <h2>Which <strong>model</strong> do you have?</h2>
+            </div>
+            <div class="header-right">
+                <span>🇿🇲</span> 
+                <span>▼</span>
+            </div>
+        </div>
+
+        <!-- Filter Row -->
+        <div class="filter-row">
+            <button class="filter-btn">
+                All models <span>321</span>
+            </button>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-model-box">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" placeholder="Search model">
+        </div>
+
+        <!-- Model Grid -->
+        <div class="model-grid">
+            
+            <!-- Special 'Find My Model' Card -->
+            <div class="model-card find-model" onclick="findMyModel()">
+                <div class="find-icon"></div>
+                <h3>Find my model</h3>
+            </div>
+
+            <!-- Popular Samsung Models in Zambia -->
+            <div class="model-card" onclick="selectModel('Galaxy A17 4G')">
+                <div class="device-image-container">
+                    <!-- Using a placeholder image for the phone -->
+                    <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a17-4g-1.jpg" alt="Galaxy A17 4G">
+                </div>
+                <h3>Galaxy A17 4G</h3>
+                <p>SM-A175F, SM-A175F/DS,...</p>
+            </div>
+
+            <div class="model-card" onclick="selectModel('Galaxy A15')">
+                <div class="device-image-container">
+                    <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a15-4g-1.jpg" alt="Galaxy A15">
+                </div>
+                <h3>Galaxy A15</h3>
+                <p>SM-A155F, SM-A155F/DS,...</p>
+            </div>
+
+            <div class="model-card" onclick="selectModel('Galaxy A05s')">
+                <div class="device-image-container">
+                    <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a05s-1.jpg" alt="Galaxy A05s">
+                </div>
+                <h3>Galaxy A05s</h3>
+                <p>SM-A057F, SM-A057F/DS,...</p>
+            </div>
+
+            <div class="model-card" onclick="selectModel('Galaxy S24 Ultra')">
+                <div class="device-image-container">
+                    <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-ultra-1.jpg" alt="Galaxy S24 Ultra">
+                </div>
+                <h3>Galaxy S24 Ultra</h3>
+                <p>SM-S928B, SM-S928B/DS,...</p>
+            </div>
+
+            <div class="model-card" onclick="selectModel('Galaxy A54')">
+                <div class="device-image-container">
+                    <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a54-1.jpg" alt="Galaxy A54">
+                </div>
+                <h3>Galaxy A54 5G</h3>
+                <p>SM-A546B, SM-A546B/DS,...</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 CK TechFix. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Doorstep Tech Guru - Lusaka, Zambia</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR INTERACTION -->
+    <script>
+        // Function to handle clicking a specific model
+        function selectModel(modelName) {
+            // In a real app, this would take you to Step 3 (Choose Repair Type)
+            // and pass the model name along in the URL.
+            alert(`You selected: Samsung ${modelName}\n\n(In a full app, this would take you to Step 3 - Repairs)`);
+            
+            // Example of how you would redirect in a real app:
+            // window.location.href = `repairs.html?brand=Samsung&model=${modelName}`;
+        }
+
+        // Function for the "Find my model" card
+        function findMyModel() {
+            alert("To find your model:\n1. Go to Settings > About Phone\n2. Or look at the back of your phone\n3. Or dial *#1234# on Samsung devices.");
+        }
+    </script>
+
+</body>
+                  </html>

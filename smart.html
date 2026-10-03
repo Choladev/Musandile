@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Brand - CK TechFix Lusaka</title>
     <style>
-        /* --- CSS VARIABLES (Matching your Home Page) --- */
+        /* --- CSS VARIABLES --- */
         :root {
             --brand-dark-blue: #0A1C3A;
             --brand-blue: #0047AB;
@@ -14,6 +14,8 @@
             --text-light: #666666;
             --bg-light: #F8F9FA;
             --white: #FFFFFF;
+            --orange-accent: #F5A623;
+            --light-blue-bg: #E6F2FF; /* For the back button background */
         }
 
         /* --- GLOBAL RESET --- */
@@ -28,10 +30,9 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
-            padding-bottom: 40px;
         }
 
-        /* --- HEADER / NAV --- */
+        /* --- HEADER (Repeated from Homepage) --- */
         header {
             background-color: var(--white);
             padding: 15px 20px;
@@ -58,23 +59,22 @@
             border-radius: 5px;
         }
 
-        /* --- PAGE CONTAINER --- */
-        .container {
-            max-width: 600px;
+        /* --- PROGRESS BAR --- */
+        .progress-container {
+            background-color: var(--white);
+            padding: 30px 20px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            border-bottom: 1px solid #E0E0E0;
         }
 
-        /* --- PROGRESS BAR --- */
         .progress-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 30px 0 50px 0;
             position: relative;
             max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
 
         .progress-bar::before {
@@ -85,19 +85,6 @@
             right: 0;
             height: 4px;
             background-color: #E0E0E0;
-            z-index: 1;
-            transform: translateY(-50%);
-        }
-
-        /* The blue progress line */
-        .progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 33%; /* 1/3 of the way */
-            height: 4px;
-            background-color: var(--brand-blue);
             z-index: 1;
             transform: translateY(-50%);
         }
@@ -114,9 +101,15 @@
             font-weight: bold;
             z-index: 2;
             position: relative;
+            transition: all 0.3s ease;
         }
 
         .step.active {
+            background-color: var(--brand-blue);
+            color: var(--white);
+        }
+
+        .step.completed {
             background-color: var(--brand-blue);
             color: var(--white);
         }
@@ -127,6 +120,10 @@
             font-size: 0.85rem;
             color: var(--text-light);
             white-space: nowrap;
+            text-align: center;
+            width: 100px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .step.active + .step-label {
@@ -134,72 +131,88 @@
             font-weight: bold;
         }
 
-        /* --- BACK BUTTON & HEADING --- */
-        .header-row {
+        /* --- MAIN CONTENT AREA --- */
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px 60px 20px;
+        }
+
+        /* Header with Back Button */
+        .section-header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             margin-bottom: 25px;
+            margin-top: 40px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
             gap: 15px;
         }
 
         .back-btn {
-            background-color: #E6F0FA; /* Light blue background */
-            color: var(--brand-blue);
+            background-color: var(--light-blue-bg);
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.2rem;
             cursor: pointer;
-            text-decoration: none;
+            color: var(--brand-blue);
+            font-size: 1.2rem;
             transition: background-color 0.2s;
+            text-decoration: none;
         }
 
         .back-btn:hover {
-            background-color: #D0E4F7;
+            background-color: #CCE5FF;
         }
 
-        .header-row h1 {
+        .section-header h2 {
             font-size: 1.8rem;
             color: var(--text-dark);
             font-weight: 400;
+            line-height: 1.2;
         }
 
-        .header-row h1 strong {
+        .section-header h2 strong {
             font-weight: 700;
         }
 
-        /* --- SEARCH INPUT SECTION --- */
-        .search-section {
-            background-color: var(--white);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            margin-bottom: 30px;
-        }
-
-        .search-label {
+        .header-right {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 15px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Search Box (Grey Container) */
+        .search-container {
+            background-color: #F4F4F4;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .search-container p {
             font-size: 1rem;
+            margin-bottom: 15px;
             color: var(--text-dark);
         }
 
-        .search-label::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background-color: var(--brand-blue);
-            border-radius: 50%;
-            display: inline-block;
+        .search-container p span {
+            color: var(--brand-blue);
+            margin-right: 5px;
         }
 
-        .search-box-wrapper {
+        .search-wrapper {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -209,11 +222,15 @@
             flex-grow: 1;
             display: flex;
             align-items: center;
-            border: 2px solid var(--brand-cyan);
-            border-radius: 8px;
-            padding: 10px 15px;
             background-color: var(--white);
-            position: relative;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 8px 15px;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--brand-cyan);
         }
 
         .search-box input {
@@ -221,6 +238,7 @@
             outline: none;
             flex-grow: 1;
             font-size: 1.1rem;
+            padding: 8px 0;
             color: var(--text-dark);
         }
 
@@ -229,101 +247,98 @@
         }
 
         .search-icon-btn {
-            background-color: #E6F0FA;
+            background-color: var(--light-blue-bg);
             border: none;
-            color: var(--brand-blue);
             width: 40px;
             height: 40px;
             border-radius: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: var(--brand-blue);
             font-size: 1.2rem;
             cursor: pointer;
         }
 
-        .device-icon {
-            width: 30px;
-            height: 50px;
-            border: 2px solid var(--brand-blue);
-            border-radius: 4px;
-            position: relative;
+        .help-icon {
+            color: var(--brand-blue);
+            font-size: 1.5rem;
+            cursor: pointer;
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: center;
+            background-color: var(--light-blue-bg);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-weight: bold;
         }
 
-        .device-icon::before {
-            content: '';
-            width: 10px;
-            height: 2px;
-            background-color: var(--brand-blue);
-            position: absolute;
-            bottom: 3px;
-        }
-
-        /* --- BRAND GRID --- */
-        .brand-section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        /* Brand Selection Grid */
+        .brand-selection-header {
             margin-bottom: 20px;
             font-size: 1rem;
             color: var(--text-dark);
         }
 
-        .brand-section-title::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background-color: var(--brand-blue);
-            border-radius: 50%;
-            display: inline-block;
+        .brand-selection-header span {
+            color: var(--brand-blue);
+            margin-right: 5px;
         }
 
         .brand-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
 
         .brand-card {
             background-color: var(--white);
-            border: 1px solid #E0E0E0;
+            border: 1px solid #EAEAEA;
             border-radius: 12px;
-            padding: 25px 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            padding: 30px 15px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            height: 120px;
         }
 
         .brand-card:hover {
             border-color: var(--brand-cyan);
-            box-shadow: 0 5px 15px rgba(0, 168, 232, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 168, 232, 0.15);
             transform: translateY(-2px);
         }
 
-        .brand-logo {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .brand-card img {
+            max-height: 40px;
+            max-width: 80%;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.2s;
         }
 
-        /* Custom styles for specific brand names to make them look like logos */
-        .brand-logo.samsung { font-family: 'Arial', sans-serif; font-weight: 900; letter-spacing: -0.5px; }
-        .brand-logo.apple { font-family: 'Helvetica', sans-serif; font-weight: 300; letter-spacing: 0px; }
-        .brand-logo.tecno { font-family: 'Arial', sans-serif; font-style: italic; font-weight: 900; }
-        .brand-logo.infinix { font-family: 'Arial', sans-serif; font-weight: 700; }
-        .brand-logo.itel { font-family: 'Arial', sans-serif; font-weight: 900; }
-        .brand-logo.huawei { font-family: 'Arial', sans-serif; font-weight: 700; }
-        .brand-logo.nokia { font-family: 'Arial', sans-serif; font-weight: 900; letter-spacing: 2px; }
+        .brand-card:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Text fallbacks for brands without easy image links */
+        .brand-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #666;
+            letter-spacing: 1px;
+        }
+        
+        .brand-text.apple {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 600;
+            font-size: 1.8rem;
+        }
 
         /* --- FOOTER --- */
         footer {
@@ -335,27 +350,32 @@
             margin-top: 40px;
         }
 
-        /* --- MEDIA QUERIES --- */
-        @media (max-width: 480px) {
-            .brand-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-            .brand-card {
-                padding: 15px 10px;
-                min-height: 80px;
-            }
-            .brand-logo {
-                font-size: 1.1rem;
-            }
-            .header-row h1 {
+        /* --- MEDIA QUERIES (Mobile Responsiveness) --- */
+        @media (max-width: 600px) {
+            .section-header h2 {
                 font-size: 1.4rem;
             }
-            .search-box-wrapper {
-                flex-direction: row;
+            
+            .search-wrapper {
+                flex-direction: column;
+                align-items: stretch;
             }
-            .device-icon {
-                display: none; /* Hide the phone icon on very small screens to save space */
+            
+            .help-icon {
+                display: none; /* Hide help icon on very small screens to save space */
+            }
+
+            .brand-card {
+                height: 100px;
+                padding: 20px 10px;
+            }
+            
+            .brand-text {
+                font-size: 1.2rem;
+            }
+            
+            .brand-text.apple {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -369,81 +389,104 @@
         </div>
     </header>
 
-    <div class="container">
-        <!-- PROGRESS BAR -->
+    <!-- PROGRESS BAR -->
+    <div class="progress-container">
         <div class="progress-bar">
-            <div class="step active">1
+            <div class="step completed">1
                 <span class="step-label">Devices</span>
             </div>
-            <div class="step">2
-                <span class="step-label">Repairs</span>
+            <div class="step active">2
+                <span class="step-label" style="color: var(--brand-blue); font-weight: bold;">Repairs</span>
             </div>
             <div class="step">3
                 <span class="step-label">Finalize</span>
             </div>
         </div>
+    </div>
 
-        <!-- BACK BUTTON & HEADING -->
-        <div class="header-row">
-            <a href="index.html" class="back-btn">&#8592;</a> <!-- Back arrow -->
-            <h1>Which <strong>model</strong> do you have?</h1>
-        </div>
-
-        <!-- SEARCH SECTION -->
-        <div class="search-section">
-            <div class="search-label">Type in your brand, model or model code.</div>
-            <div class="search-box-wrapper">
-                <div class="search-box">
-                    <input type="text" id="deviceSearch" placeholder="iPhone 12 Pro Max">
-                    <button class="search-icon-btn" onclick="searchDevice()">🔍</button>
-                </div>
-                <!-- Phone Icon Graphic -->
-                <div class="device-icon"></div>
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        
+        <!-- Section Header with Back Button -->
+        <div class="section-header">
+            <div class="header-left">
+                <a href="index.html" class="back-btn">←</a>
+                <h2>Which <strong>model</strong> do you have?</h2>
+            </div>
+            <div class="header-right">
+                <span>🇿🇲</span> <!-- Changed to Zambian flag -->
+                <span>▼</span>
             </div>
         </div>
 
-        <!-- BRAND SELECTION GRID -->
-        <div class="brand-section-title">Or select your brand</div>
+        <!-- Search Box -->
+        <div class="search-container">
+            <p><span>●</span> Type in your <strong>brand, model or model code.</strong></p>
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <input type="text" id="modelSearch" placeholder="e.g., iPhone 12 Pro Max, Samsung A12, TECNO Spark">
+                    <button class="search-icon-btn" onclick="searchModel()">🔍</button>
+                </div>
+                <div class="help-icon" title="Need help finding your model? Check the back of your phone or in Settings > About Phone.">?</div>
+            </div>
+        </div>
+
+        <!-- Brand Selection Grid -->
+        <p class="brand-selection-header"><span>●</span> Or select your <strong>brand</strong></p>
         
         <div class="brand-grid">
-            <!-- Note: The "data-brand" attribute is what we will use to send them to the next page -->
+            <!-- PRIORITY BRANDS FOR ZAMBIA (Based on your data) -->
+            
             <div class="brand-card" onclick="selectBrand('Samsung')">
-                <div class="brand-logo samsung">SAMSUNG</div>
+                <div class="brand-text">SAMSUNG</div>
             </div>
+            
             <div class="brand-card" onclick="selectBrand('TECNO')">
-                <div class="brand-logo tecno">TECNO</div>
+                <div class="brand-text">TECNO</div>
             </div>
+
             <div class="brand-card" onclick="selectBrand('Infinix')">
-                <div class="brand-logo infinix">Infinix</div>
+                <div class="brand-text">Infinix</div>
             </div>
+
             <div class="brand-card" onclick="selectBrand('iPhone / Apple')">
-                <div class="brand-logo apple">Apple</div>
+                <div class="brand-text apple">Apple</div>
             </div>
-            <div class="brand-card" onclick="selectBrand('Huawei')">
-                <div class="brand-logo huawei">HUAWEI</div>
-            </div>
+
             <div class="brand-card" onclick="selectBrand('itel')">
-                <div class="brand-logo itel">itel</div>
+                <div class="brand-text" style="text-transform: lowercase;">itel</div>
             </div>
+
+            <div class="brand-card" onclick="selectBrand('Huawei')">
+                <div class="brand-text">HUAWEI</div>
+            </div>
+
             <div class="brand-card" onclick="selectBrand('Xiaomi / Redmi')">
-                <div class="brand-logo">Xiaomi</div>
+                <div class="brand-text">XIAOMI</div>
             </div>
+
             <div class="brand-card" onclick="selectBrand('OPPO')">
-                <div class="brand-logo">OPPO</div>
+                <div class="brand-text">OPPO</div>
             </div>
+
             <div class="brand-card" onclick="selectBrand('vivo')">
-                <div class="brand-logo">vivo</div>
+                <div class="brand-text" style="text-transform: lowercase;">vivo</div>
             </div>
+
             <div class="brand-card" onclick="selectBrand('Nokia')">
-                <div class="brand-logo nokia">NOKIA</div>
+                <div class="brand-text">NOKIA</div>
             </div>
+
             <div class="brand-card" onclick="selectBrand('HONOR')">
-                <div class="brand-logo">HONOR</div>
+                <div class="brand-text">HONOR</div>
             </div>
+
             <div class="brand-card" onclick="selectBrand('realme')">
-                <div class="brand-logo">realme</div>
+                <div class="brand-text" style="text-transform: lowercase;">realme</div>
             </div>
+
         </div>
+
     </div>
 
     <!-- FOOTER -->
@@ -452,38 +495,35 @@
         <p style="margin-top: 10px; font-size: 0.8rem;">Doorstep Tech Guru - Lusaka, Zambia</p>
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT FOR INTERACTION -->
     <script>
-        // Function to handle the search button
-        function searchDevice() {
-            const input = document.getElementById('deviceSearch').value;
+        // Function to handle Search Button
+        function searchModel() {
+            const input = document.getElementById('modelSearch').value;
             if(input) {
-                // In a real app, this would redirect to a results page
-                alert(`Searching for repairs for: ${input}\n\n(Next step: Show repair options for this device)`);
+                // In a real app, this would filter the brand list or take you directly to Step 3
+                alert(`Searching for repairs for: ${input}\n\n(In a full app, this would take you to Step 3 - Repairs)`);
             } else {
                 alert("Please type in a device model first.");
             }
         }
 
+        // Function to handle clicking a Brand Card
+        function selectBrand(brand) {
+            // In a real app, this would take you to Step 3 (Choose Repair Type)
+            alert(`You selected: ${brand}\n\n(In a full app, this would take you to Step 3 - Repairs)`);
+            
+            // OPTIONAL: You can add logic here to automatically move the progress bar
+            // or change the page content to show the specific repair types for that brand.
+        }
+
         // Allow pressing "Enter" in the search box
-        document.getElementById('deviceSearch').addEventListener('keypress', function (e) {
+        document.getElementById('modelSearch').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
-                searchDevice();
+                searchModel();
             }
         });
-
-        // Function to handle selecting a brand from the grid
-        function selectBrand(brandName) {
-            // Save the selected brand to the browser's local storage so the next page can use it
-            localStorage.setItem('selectedBrand', brandName);
-            
-            // In a real app, this would redirect to "repairs.html"
-            alert(`You selected: ${brandName}\n\n(In a real app, this would take you to Step 2: Choose Repair Type)`);
-            
-            // Uncomment the line below when you have the next page ready:
-            // window.location.href = 'repairs.html'; 
-        }
     </script>
 
 </body>
-</html>
+    </html>

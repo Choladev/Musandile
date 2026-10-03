@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CK TechFix - Doorstep Mobile Repair Lusaka</title>
+    <title>Select Brand - CK TechFix Lusaka</title>
     <style>
-        /* --- CSS VARIABLES (CK TechFix Colors) --- */
+        /* --- CSS VARIABLES (Matching your Home Page) --- */
         :root {
             --brand-dark-blue: #0A1C3A;
             --brand-blue: #0047AB;
@@ -14,7 +14,6 @@
             --text-light: #666666;
             --bg-light: #F8F9FA;
             --white: #FFFFFF;
-            --orange-accent: #E6A23C;
         }
 
         /* --- GLOBAL RESET --- */
@@ -29,6 +28,7 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
+            padding-bottom: 40px;
         }
 
         /* --- HEADER / NAV --- */
@@ -39,8 +39,6 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            position: relative;
-            z-index: 100;
         }
 
         .logo-container {
@@ -60,44 +58,19 @@
             border-radius: 5px;
         }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            background-color: var(--brand-dark-blue);
-            color: var(--white);
-            text-align: center;
-            padding: 60px 20px 100px 20px;
-            position: relative;
+        /* --- PAGE CONTAINER --- */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
-            border-bottom: 4px solid var(--orange-accent);
-            padding-bottom: 5px;
-        }
-
-        /* --- BOOKING WIDGET (Floating Card) --- */
-        .booking-widget {
-            background-color: var(--white);
-            max-width: 800px;
-            margin: -60px auto 40px auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 30px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Progress Bar */
+        /* --- PROGRESS BAR --- */
         .progress-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
+            margin: 30px 0 50px 0;
             position: relative;
             max-width: 400px;
             margin-left: auto;
@@ -112,6 +85,19 @@
             right: 0;
             height: 4px;
             background-color: #E0E0E0;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+
+        /* The blue progress line */
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 33%; /* 1/3 of the way */
+            height: 4px;
+            background-color: var(--brand-blue);
             z-index: 1;
             transform: translateY(-50%);
         }
@@ -148,33 +134,86 @@
             font-weight: bold;
         }
 
-        /* Search Input */
-        .search-section {
-            margin-top: 60px;
+        /* --- BACK BUTTON & HEADING --- */
+        .header-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 15px;
         }
 
-        .search-section h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+        .back-btn {
+            background-color: #E6F0FA; /* Light blue background */
+            color: var(--brand-blue);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: #D0E4F7;
+        }
+
+        .header-row h1 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            font-weight: 400;
+        }
+
+        .header-row h1 strong {
+            font-weight: 700;
+        }
+
+        /* --- SEARCH INPUT SECTION --- */
+        .search-section {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+        }
+
+        .search-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
             color: var(--text-dark);
         }
 
-        .search-section h2 span {
-            font-weight: normal;
+        .search-label::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: var(--brand-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .search-box-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .search-box {
+            flex-grow: 1;
             display: flex;
             align-items: center;
-            border: 2px solid #E0E0E0;
+            border: 2px solid var(--brand-cyan);
             border-radius: 8px;
             padding: 10px 15px;
-            margin-bottom: 30px;
-            transition: border-color 0.3s;
-        }
-
-        .search-box:focus-within {
-            border-color: var(--brand-cyan);
+            background-color: var(--white);
+            position: relative;
         }
 
         .search-box input {
@@ -182,7 +221,6 @@
             outline: none;
             flex-grow: 1;
             font-size: 1.1rem;
-            padding: 10px 0;
             color: var(--text-dark);
         }
 
@@ -190,185 +228,134 @@
             color: #A0A0A0;
         }
 
-        .search-icon {
+        .search-icon-btn {
+            background-color: #E6F0FA;
+            border: none;
             color: var(--brand-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 1.2rem;
             cursor: pointer;
         }
 
-        /* Device Selection Grid */
-        .device-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-        }
-
-        .device-card {
-            border: 1px solid #E0E0E0;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .device-card:hover {
-            border-color: var(--brand-cyan);
-            background-color: #F0F8FF;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .device-card svg {
-            width: 40px;
-            height: 40px;
-            fill: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .device-card:hover svg {
-            fill: var(--brand-blue);
-        }
-
-        .device-card span {
-            display: block;
-            font-weight: bold;
-            color: var(--text-dark);
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-
-        /* --- AREA & PROCESS SECTION --- */
-        .area-process {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px 80px 20px;
-        }
-
-        .area-header h2 {
-            font-size: 2.2rem;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-            display: inline-block;
-            border-bottom: 5px solid var(--orange-accent);
-            padding-bottom: 2px;
-        }
-
-        .area-header p {
-            color: var(--text-light);
-            margin-top: 15px;
-            margin-bottom: 50px;
-            font-size: 1.1rem;
-            line-height: 1.5;
-        }
-
-        .area-header p strong {
-            color: var(--text-dark);
-        }
-
-        /* Vertical Process Steps */
-        .process-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            position: relative;
-        }
-
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 25px;
-            left: 35px;
-            bottom: 25px;
-            width: 2px;
-            background-color: #E0E0E0;
-            z-index: 1;
-        }
-
-        .process-step {
-            display: flex;
-            gap: 25px;
-            position: relative;
-            z-index: 2;
-            padding-bottom: 40px;
-        }
-
-        .process-step:last-child {
-            padding-bottom: 0;
-        }
-
-        .step-icon {
-            background-color: #FFF8F0;
-            border: 2px solid var(--orange-accent);
-            color: var(--orange-accent);
-            width: 50px;
+        .device-icon {
+            width: 30px;
             height: 50px;
-            border-radius: 12px;
+            border: 2px solid var(--brand-blue);
+            border-radius: 4px;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            flex-shrink: 0;
         }
 
-        .step-content {
-            padding-top: 5px;
+        .device-icon::before {
+            content: '';
+            width: 10px;
+            height: 2px;
+            background-color: var(--brand-blue);
+            position: absolute;
+            bottom: 3px;
         }
 
-        .step-content h3 {
-            font-size: 1.4rem;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-
-        .step-content p {
-            color: var(--text-light);
+        /* --- BRAND GRID --- */
+        .brand-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
             font-size: 1rem;
-            line-height: 1.6;
+            color: var(--text-dark);
         }
+
+        .brand-section-title::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: var(--brand-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .brand-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .brand-card {
+            background-color: var(--white);
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100px;
+        }
+
+        .brand-card:hover {
+            border-color: var(--brand-cyan);
+            box-shadow: 0 5px 15px rgba(0, 168, 232, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .brand-logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Custom styles for specific brand names to make them look like logos */
+        .brand-logo.samsung { font-family: 'Arial', sans-serif; font-weight: 900; letter-spacing: -0.5px; }
+        .brand-logo.apple { font-family: 'Helvetica', sans-serif; font-weight: 300; letter-spacing: 0px; }
+        .brand-logo.tecno { font-family: 'Arial', sans-serif; font-style: italic; font-weight: 900; }
+        .brand-logo.infinix { font-family: 'Arial', sans-serif; font-weight: 700; }
+        .brand-logo.itel { font-family: 'Arial', sans-serif; font-weight: 900; }
+        .brand-logo.huawei { font-family: 'Arial', sans-serif; font-weight: 700; }
+        .brand-logo.nokia { font-family: 'Arial', sans-serif; font-weight: 900; letter-spacing: 2px; }
 
         /* --- FOOTER --- */
         footer {
             background-color: #061224;
             color: #8892B0;
             text-align: center;
-            padding: 40px 20px;
-            font-size: 0.95rem;
-            border-top: 1px solid #1A2B4C;
+            padding: 20px;
+            font-size: 0.9rem;
+            margin-top: 40px;
         }
 
-        footer p {
-            margin-bottom: 5px;
-        }
-
-        /* --- MEDIA QUERIES (Mobile Responsiveness) --- */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .booking-widget {
-                margin: -40px 15px 30px 15px;
-                padding: 20px;
-            }
-
-            .device-grid {
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 480px) {
+            .brand-grid {
                 grid-template-columns: 1fr 1fr;
+                gap: 10px;
             }
-
-            .area-header h2 {
-                font-size: 1.8rem;
+            .brand-card {
+                padding: 15px 10px;
+                min-height: 80px;
             }
-
-            .process-steps::before {
-                left: 25px;
+            .brand-logo {
+                font-size: 1.1rem;
             }
-
-            .step-icon {
-                width: 42px;
-                height: 42px;
-                font-size: 1.2rem;
+            .header-row h1 {
+                font-size: 1.4rem;
+            }
+            .search-box-wrapper {
+                flex-direction: row;
+            }
+            .device-icon {
+                display: none; /* Hide the phone icon on very small screens to save space */
             }
         }
     </style>
@@ -378,20 +365,12 @@
     <!-- HEADER -->
     <header>
         <div class="logo-container">
-            <!-- Replace the div below with your actual logo image tag if you have one -->
-            <!-- <img src="your-logo.png" alt="CK TechFix Logo" class="logo-img"> -->
             <div class="logo-img">CK TechFix</div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <h1>Lusaka's First Mobile Repair Shop.<br>We <span>come to you!</span></h1>
-    </section>
-
-    <!-- BOOKING WIDGET -->
-    <div class="booking-widget">
-        <!-- Progress Bar -->
+    <div class="container">
+        <!-- PROGRESS BAR -->
         <div class="progress-bar">
             <div class="step active">1
                 <span class="step-label">Devices</span>
@@ -404,110 +383,105 @@
             </div>
         </div>
 
-        <!-- Search and Select -->
+        <!-- BACK BUTTON & HEADING -->
+        <div class="header-row">
+            <a href="index.html" class="back-btn">&#8592;</a> <!-- Back arrow -->
+            <h1>Which <strong>model</strong> do you have?</h1>
+        </div>
+
+        <!-- SEARCH SECTION -->
         <div class="search-section">
-            <h2>Which <strong>model</strong> do you have?</h2>
-            
-            <div class="search-box">
-                <input type="text" id="deviceSearch" placeholder="Type in your brand, model or model code (e.g., iPhone 12 Pro Max)">
-                <div class="search-icon" onclick="searchDevice()">🔍</div>
+            <div class="search-label">Type in your brand, model or model code.</div>
+            <div class="search-box-wrapper">
+                <div class="search-box">
+                    <input type="text" id="deviceSearch" placeholder="iPhone 12 Pro Max">
+                    <button class="search-icon-btn" onclick="searchDevice()">🔍</button>
+                </div>
+                <!-- Phone Icon Graphic -->
+                <div class="device-icon"></div>
             </div>
+        </div>
 
-            <p style="margin-bottom: 15px; color: var(--text-light); font-size: 0.9rem;">
-                <span style="color: var(--brand-blue);">●</span> Or select your type
-            </p>
-
-            <!-- Device Icons Grid -->
-            <div class="device-grid">
-                <div class="device-card" onclick="selectDevice('Phone')">
-                    <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-                    <span>Phone</span>
-                </div>
-                <div class="device-card" onclick="selectDevice('Tablet')">
-                    <svg viewBox="0 0 24 24"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H3V6h18v12z"/></svg>
-                    <span>Tablet</span>
-                </div>
-                <div class="device-card" onclick="selectDevice('Watch')">
-                    <svg viewBox="0 0 24 24"><path d="M20 12c0-2.54-1.19-4.81-3.04-6.27L16 0H8l-.95 5.73C5.19 7.19 4 9.45 4 12s1.19 4.81 3.05 6.27L8 24h8l.96-5.73C18.81 16.81 20 14.54 20 12zM6 12c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6z"/></svg>
-                    <span>Watch</span>
-                </div>
-                <div class="device-card" onclick="selectDevice('Laptop')">
-                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
-                    <span>Laptop</span>
-                </div>
+        <!-- BRAND SELECTION GRID -->
+        <div class="brand-section-title">Or select your brand</div>
+        
+        <div class="brand-grid">
+            <!-- Note: The "data-brand" attribute is what we will use to send them to the next page -->
+            <div class="brand-card" onclick="selectBrand('Samsung')">
+                <div class="brand-logo samsung">SAMSUNG</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('TECNO')">
+                <div class="brand-logo tecno">TECNO</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('Infinix')">
+                <div class="brand-logo infinix">Infinix</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('iPhone / Apple')">
+                <div class="brand-logo apple">Apple</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('Huawei')">
+                <div class="brand-logo huawei">HUAWEI</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('itel')">
+                <div class="brand-logo itel">itel</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('Xiaomi / Redmi')">
+                <div class="brand-logo">Xiaomi</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('OPPO')">
+                <div class="brand-logo">OPPO</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('vivo')">
+                <div class="brand-logo">vivo</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('Nokia')">
+                <div class="brand-logo nokia">NOKIA</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('HONOR')">
+                <div class="brand-logo">HONOR</div>
+            </div>
+            <div class="brand-card" onclick="selectBrand('realme')">
+                <div class="brand-logo">realme</div>
             </div>
         </div>
     </div>
 
-    <!-- AREA & PROCESS SECTION -->
-    <section class="area-process">
-        <div class="area-header">
-            <h2>Lusaka Area</h2>
-            <p>We’re based in <strong>Lusaka, Zambia</strong>, but we also service the surrounding areas including Kabulonga, Woodlands, Roma, Chelston, and the CBD.</p>
-        </div>
-
-        <div class="process-steps">
-            <!-- Step 1 -->
-            <div class="process-step">
-                <div class="step-icon">✓</div>
-                <div class="step-content">
-                    <h3>Select Device</h3>
-                    <p>Choose the device you need repaired.</p>
-                </div>
-            </div>
-            <!-- Step 2 -->
-            <div class="process-step">
-                <div class="step-icon">✓</div>
-                <div class="step-content">
-                    <h3>Choose Repair Type</h3>
-                    <p>Tell us the issue with your device.</p>
-                </div>
-            </div>
-            <!-- Step 3 -->
-            <div class="process-step">
-                <div class="step-icon">✓</div>
-                <div class="step-content">
-                    <h3>Book Appointment</h3>
-                    <p>Choose a desired appointment time. We’ll try our best to schedule your service as close as possible to your preferred time slot.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 CK TechFix</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; color: #5A6B8A;">Doorstep Tech Guru - Lusaka, Zambia</p>
+        <p>&copy; 2026 CK TechFix. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Doorstep Tech Guru - Lusaka, Zambia</p>
     </footer>
 
-    <!-- JAVASCRIPT FOR INTERACTION -->
+    <!-- JAVASCRIPT -->
     <script>
         // Function to handle the search button
         function searchDevice() {
             const input = document.getElementById('deviceSearch').value;
             if(input) {
-                // Save the search term and redirect to brands page
-                localStorage.setItem('deviceSearch', input);
-                window.location.href = 'brands.html';
+                // In a real app, this would redirect to a results page
+                alert(`Searching for repairs for: ${input}\n\n(Next step: Show repair options for this device)`);
             } else {
                 alert("Please type in a device model first.");
             }
         }
 
-        // Allow pressing "Enter" in the search box to trigger search
+        // Allow pressing "Enter" in the search box
         document.getElementById('deviceSearch').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 searchDevice();
             }
         });
 
-        // Function to handle clicking the device cards (Phone, Tablet, etc.)
-        function selectDevice(type) {
-            // Save the device type to local storage
-            localStorage.setItem('deviceType', type);
+        // Function to handle selecting a brand from the grid
+        function selectBrand(brandName) {
+            // Save the selected brand to the browser's local storage so the next page can use it
+            localStorage.setItem('selectedBrand', brandName);
             
-            // Redirect the user to the brands page
-            window.location.href = 'brands.html';
+            // In a real app, this would redirect to "repairs.html"
+            alert(`You selected: ${brandName}\n\n(In a real app, this would take you to Step 2: Choose Repair Type)`);
+            
+            // Uncomment the line below when you have the next page ready:
+            // window.location.href = 'repairs.html'; 
         }
     </script>
 

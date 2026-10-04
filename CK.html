@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CK TechFix - Doorstep Mobile Repair Lusaka</title>
     <style>
-        /* --- CSS VARIABLES (Colors matching your logo) --- */
+        /* --- CSS VARIABLES --- */
         :root {
             --brand-dark-blue: #0A1C3A;
             --brand-blue: #0047AB;
@@ -14,7 +14,8 @@
             --text-light: #666666;
             --bg-light: #F8F9FA;
             --white: #FFFFFF;
-            --orange-accent: #F5A623; /* Used for the step icons like in the screenshot */
+            --orange-accent: #F5A623;
+            --light-blue-bg: #E6F2FF; /* For the search container and back button */
         }
 
         /* --- GLOBAL RESET --- */
@@ -31,7 +32,7 @@
             line-height: 1.6;
         }
 
-        /* --- HEADER / NAV --- */
+        /* --- HEADER --- */
         header {
             background-color: var(--white);
             padding: 15px 20px;
@@ -52,7 +53,6 @@
         .logo-img {
             height: 40px;
             margin-right: 10px;
-            /* Placeholder for your actual logo image */
             background: var(--brand-blue);
             color: white;
             padding: 5px 10px;
@@ -64,12 +64,12 @@
             background-color: var(--brand-dark-blue);
             color: var(--white);
             text-align: center;
-            padding: 60px 20px 100px 20px; /* Extra bottom padding for the floating card */
+            padding: 60px 20px 120px 20px; /* Extra bottom padding for the floating card */
             position: relative;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 20px;
             line-height: 1.2;
         }
@@ -82,25 +82,29 @@
         /* --- BOOKING WIDGET (Floating Card) --- */
         .booking-widget {
             background-color: var(--white);
-            max-width: 800px;
-            margin: -60px auto 40px auto; /* Pulls the card up over the hero */
+            max-width: 600px;
+            margin: -80px auto 40px auto; /* Pulls the card up over the hero */
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 30px;
+            padding: 25px;
             position: relative;
             z-index: 10;
         }
 
-        /* Progress Bar */
+        /* Progress Bar - FIXED SPACING */
+        .progress-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
         .progress-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
             position: relative;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
+            max-width: 320px; /* Constrained width to bring circles closer */
         }
 
         .progress-bar::before {
@@ -118,8 +122,8 @@
         .step {
             background-color: #E0E0E0;
             color: var(--text-light);
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -127,6 +131,7 @@
             font-weight: bold;
             z-index: 2;
             position: relative;
+            font-size: 0.9rem;
         }
 
         .step.active {
@@ -136,8 +141,8 @@
 
         .step-label {
             position: absolute;
-            top: 45px;
-            font-size: 0.85rem;
+            top: 42px;
+            font-size: 0.8rem;
             color: var(--text-light);
             white-space: nowrap;
         }
@@ -147,28 +152,75 @@
             font-weight: bold;
         }
 
-        /* Search Input */
-        .search-section {
-            margin-top: 60px;
+        /* Search Section Header (With Back Button) */
+        .search-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            margin-bottom: 20px;
         }
 
-        .search-section h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+        .back-btn {
+            background-color: var(--light-blue-bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: var(--brand-blue);
+            font-size: 1.2rem;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .search-header h2 {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .search-header h2 strong {
+            font-weight: 700;
+        }
+
+        /* New Search Box Design (Light Blue Container) */
+        .search-container-box {
+            background-color: #F4F4F4; /* Slight grey background for the container */
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .search-container-box p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
             color: var(--text-dark);
         }
 
-        .search-section h2 span {
-            font-weight: normal;
+        .search-container-box p span {
+            color: var(--brand-blue);
+            margin-right: 5px;
+        }
+
+        .search-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .search-box {
+            flex-grow: 1;
             display: flex;
             align-items: center;
-            border: 2px solid #E0E0E0;
+            background-color: var(--white);
+            border: 1px solid #E0E0E0;
             border-radius: 8px;
-            padding: 10px 15px;
-            margin-bottom: 30px;
+            padding: 8px 15px;
             transition: border-color 0.3s;
         }
 
@@ -180,8 +232,8 @@
             border: none;
             outline: none;
             flex-grow: 1;
-            font-size: 1.1rem;
-            padding: 10px 0;
+            font-size: 1rem;
+            padding: 8px 0;
             color: var(--text-dark);
         }
 
@@ -189,26 +241,49 @@
             color: #A0A0A0;
         }
 
-        .search-icon {
+        .search-icon-btn {
+            background-color: var(--light-blue-bg);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--brand-blue);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .help-icon-box {
             color: var(--brand-blue);
             font-size: 1.2rem;
+            font-weight: bold;
+            background-color: var(--light-blue-bg);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
         }
 
         /* Device Selection Grid */
         .device-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
 
         .device-card {
             border: 1px solid #E0E0E0;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
+            background-color: var(--white);
         }
 
         .device-card:hover {
@@ -232,7 +307,7 @@
             font-weight: bold;
             color: var(--text-dark);
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         /* --- AREA & PROCESS SECTION --- */
@@ -263,7 +338,6 @@
             color: var(--text-dark);
         }
 
-        /* Vertical Steps */
         .process-steps {
             display: flex;
             flex-direction: column;
@@ -313,7 +387,7 @@
         }
 
         .video-container {
-            max-width: 350px; /* Mobile aspect ratio */
+            max-width: 350px;
             margin: 0 auto;
             background-color: var(--white);
             border-radius: 12px;
@@ -322,7 +396,6 @@
             text-align: left;
         }
 
-        /* Mocking a TikTok embed */
         .video-placeholder {
             width: 100%;
             height: 500px;
@@ -355,7 +428,7 @@
             display: block;
             width: 100%;
             padding: 12px;
-            background-color: #FE2C55; /* TikTok red */
+            background-color: #FE2C55;
             color: white;
             text-align: center;
             text-decoration: none;
@@ -373,19 +446,35 @@
             font-size: 0.9rem;
         }
 
-        /* --- MEDIA QUERIES (Mobile Responsiveness) --- */
-        @media (max-width: 768px) {
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 600px) {
             .hero h1 {
                 font-size: 1.8rem;
             }
             
             .booking-widget {
-                margin: -40px 15px 30px 15px;
+                margin: -60px 15px 30px 15px;
                 padding: 20px;
+            }
+
+            .search-header h2 {
+                font-size: 1.2rem;
             }
 
             .device-grid {
                 grid-template-columns: 1fr 1fr;
+            }
+            
+            .search-input-wrapper {
+                flex-wrap: wrap;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .help-icon-box {
+                display: none; /* Hide help icon on very small screens */
             }
         }
     </style>
@@ -395,8 +484,6 @@
     <!-- HEADER -->
     <header>
         <div class="logo-container">
-            <!-- Replace the div below with your actual logo image tag -->
-            <!-- <img src="your-logo.png" alt="CK TechFix Logo" class="logo-img"> -->
             <img src="ck.png" alt="CK TechFix Logo" class="logo-img">
         </div>
     </header>
@@ -408,54 +495,60 @@
 
     <!-- BOOKING WIDGET -->
     <div class="booking-widget">
-        <!-- Progress Bar -->
-        <div class="progress-bar">
-            <div class="step active">1
-                <span class="step-label">Devices</span>
-            </div>
-            <div class="step">2
-                <span class="step-label">Repairs</span>
-            </div>
-            <div class="step">3
-                <span class="step-label">Finalize</span>
+        <!-- Progress Bar (Fixed Spacing) -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="step active">1
+                    <span class="step-label">Devices</span>
+                </div>
+                <div class="step">2
+                    <span class="step-label">Repairs</span>
+                </div>
+                <div class="step">3
+                    <span class="step-label">Finalize</span>
+                </div>
             </div>
         </div>
 
-        <!-- Search and Select -->
-        <div class="search-section">
+        <!-- Search Section -->
+        <div class="search-header">
+            <a href="#" class="back-btn">←</a>
             <h2>Which <strong>model</strong> do you have?</h2>
-            
-            <div class="search-box">
-                <input type="text" id="deviceSearch" placeholder="Type in your brand, model or model code (e.g., iPhone 12 Pro Max)">
-                <div class="search-icon" onclick="searchDevice()">🔍</div>
+        </div>
+
+        <!-- Search Box (Fixed Design) -->
+        <div class="search-container-box">
+            <p><span>●</span> Type in your <strong>brand, model or model code.</strong></p>
+            <div class="search-input-wrapper">
+                <div class="search-box">
+                    <input type="text" id="deviceSearch" placeholder="iPhone 12 Pro Max">
+                    <button class="search-icon-btn" onclick="searchDevice()">🔍</button>
+                </div>
+                <div class="help-icon-box" title="Need help finding your model?">?</div>
             </div>
+        </div>
 
-            <p style="margin-bottom: 15px; color: var(--text-light); font-size: 0.9rem;">
-                <span style="color: var(--brand-blue);">●</span> Or select your type
-            </p>
+        <p style="margin-bottom: 15px; color: var(--text-light); font-size: 0.9rem;">
+            <span style="color: var(--brand-blue);">●</span> Or select your type
+        </p>
 
-            <!-- Device Icons Grid -->
-            <div class="device-grid">
-                <div class="device-card" onclick="selectDevice('Phone')">
-                    <!-- SVG Phone Icon -->
-                    <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-                    <span>Phone</span>
-                </div>
-                <div class="device-card" onclick="selectDevice('Tablet')">
-                    <!-- SVG Tablet Icon -->
-                    <svg viewBox="0 0 24 24"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H3V6h18v12z"/></svg>
-                    <span>Tablet</span>
-                </div>
-                <div class="device-card" onclick="selectDevice('Watch')">
-                    <!-- SVG Watch Icon -->
-                    <svg viewBox="0 0 24 24"><path d="M20 12c0-2.54-1.19-4.81-3.04-6.27L16 0H8l-.95 5.73C5.19 7.19 4 9.45 4 12s1.19 4.81 3.05 6.27L8 24h8l.96-5.73C18.81 16.81 20 14.54 20 12zM6 12c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6z"/></svg>
-                    <span>Watch</span>
-                </div>
-                <div class="device-card" onclick="selectDevice('Laptop')">
-                    <!-- SVG Laptop Icon -->
-                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
-                    <span>Laptop</span>
-                </div>
+        <!-- Device Icons Grid -->
+        <div class="device-grid">
+            <div class="device-card" onclick="selectDevice('Phone')">
+                <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                <span>Phone</span>
+            </div>
+            <div class="device-card" onclick="selectDevice('Tablet')">
+                <svg viewBox="0 0 24 24"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H3V6h18v12z"/></svg>
+                <span>Tablet</span>
+            </div>
+            <div class="device-card" onclick="selectDevice('Watch')">
+                <svg viewBox="0 0 24 24"><path d="M20 12c0-2.54-1.19-4.81-3.04-6.27L16 0H8l-.95 5.73C5.19 7.19 4 9.45 4 12s1.19 4.81 3.05 6.27L8 24h8l.96-5.73C18.81 16.81 20 14.54 20 12zM6 12c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6z"/></svg>
+                <span>Watch</span>
+            </div>
+            <div class="device-card" onclick="selectDevice('Laptop')">
+                <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                <span>Laptop</span>
             </div>
         </div>
     </div>
@@ -468,7 +561,6 @@
         </div>
 
         <div class="process-steps">
-            <!-- Step 1 -->
             <div class="process-step">
                 <div class="step-icon">✓</div>
                 <div class="step-content">
@@ -476,7 +568,6 @@
                     <p>Choose the device you need repaired.</p>
                 </div>
             </div>
-            <!-- Step 2 -->
             <div class="process-step">
                 <div class="step-icon">✓</div>
                 <div class="step-content">
@@ -484,7 +575,6 @@
                     <p>Tell us the issue with your device.</p>
                 </div>
             </div>
-            <!-- Step 3 -->
             <div class="process-step">
                 <div class="step-icon">✓</div>
                 <div class="step-content">
@@ -500,7 +590,6 @@
         <h2>See Us In Action</h2>
         <div class="video-container">
             <div class="video-placeholder">
-                <!-- In a real site, you would embed a TikTok or YouTube video here -->
                 <p>[ Insert TikTok Video Here ]</p>
             </div>
             <div class="video-caption">
@@ -519,24 +608,19 @@
 
     <!-- JAVASCRIPT FOR INTERACTION -->
     <script>
-        // Simple function to simulate the search interaction
         function searchDevice() {
             const input = document.getElementById('deviceSearch').value;
             if(input) {
                 alert(`Searching for repairs for: ${input}\n\n(In a real app, this would take you to Step 2)`);
-                // Logic to move progress bar to step 2 would go here
             } else {
                 alert("Please type in a device model first.");
             }
         }
 
-        // Function to handle clicking the device cards
         function selectDevice(type) {
             alert(`You selected: ${type}\n\n(In a real app, this would take you to Step 2)`);
-            // Logic to move progress bar to step 2 and show repair options would go here
         }
 
-        // Allow pressing "Enter" in the search box
         document.getElementById('deviceSearch').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 searchDevice();
@@ -545,4 +629,4 @@
     </script>
 
 </body>
-  </html>
+                                                         </html>

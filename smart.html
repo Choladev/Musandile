@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Brand - CK TechFix Lusaka</title>
+    <title>Select Smartphone Brand - CK TechFix Lusaka</title>
     <style>
         /* --- CSS VARIABLES --- */
         :root {
@@ -15,7 +15,7 @@
             --bg-light: #F8F9FA;
             --white: #FFFFFF;
             --orange-accent: #F5A623;
-            --light-blue-bg: #E6F2FF; /* For the back button background */
+            --light-blue-bg: #E6F2FF; /* For the back button and search button */
         }
 
         /* --- GLOBAL RESET --- */
@@ -32,7 +32,7 @@
             line-height: 1.6;
         }
 
-        /* --- HEADER (Repeated from Homepage) --- */
+        /* --- HEADER --- */
         header {
             background-color: var(--white);
             padding: 15px 20px;
@@ -66,6 +66,8 @@
             max-width: 800px;
             margin: 0 auto;
             border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            justify-content: center;
         }
 
         .progress-bar {
@@ -73,8 +75,8 @@
             justify-content: space-between;
             align-items: center;
             position: relative;
-            max-width: 400px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 320px;
         }
 
         .progress-bar::before {
@@ -92,8 +94,8 @@
         .step {
             background-color: #E0E0E0;
             color: var(--text-light);
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -101,7 +103,7 @@
             font-weight: bold;
             z-index: 2;
             position: relative;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .step.active {
@@ -116,8 +118,8 @@
 
         .step-label {
             position: absolute;
-            top: 45px;
-            font-size: 0.85rem;
+            top: 42px;
+            font-size: 0.8rem;
             color: var(--text-light);
             white-space: nowrap;
             text-align: center;
@@ -133,7 +135,7 @@
 
         /* --- MAIN CONTENT AREA --- */
         .main-content {
-            max-width: 800px;
+            max-width: 600px; /* Matching the widget width from homepage */
             margin: 0 auto;
             padding: 30px 20px 60px 20px;
         }
@@ -142,22 +144,16 @@
         .section-header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
-            margin-top: 40px;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
             gap: 15px;
+            margin-bottom: 25px;
+            margin-top: 20px;
         }
 
         .back-btn {
             background-color: var(--light-blue-bg);
             border: none;
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 8px;
             display: flex;
             justify-content: center;
@@ -165,16 +161,12 @@
             cursor: pointer;
             color: var(--brand-blue);
             font-size: 1.2rem;
-            transition: background-color 0.2s;
             text-decoration: none;
-        }
-
-        .back-btn:hover {
-            background-color: #CCE5FF;
+            flex-shrink: 0;
         }
 
         .section-header h2 {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             color: var(--text-dark);
             font-weight: 400;
             line-height: 1.2;
@@ -184,38 +176,29 @@
             font-weight: 700;
         }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-
-        /* Search Box (Grey Container) */
-        .search-container {
+        /* Search Box (Matches Homepage Design) */
+        .search-container-box {
             background-color: #F4F4F4;
             border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 40px;
+            padding: 20px;
+            margin-bottom: 30px;
         }
 
-        .search-container p {
-            font-size: 1rem;
+        .search-container-box p {
+            font-size: 0.95rem;
             margin-bottom: 15px;
             color: var(--text-dark);
         }
 
-        .search-container p span {
+        .search-container-box p span {
             color: var(--brand-blue);
             margin-right: 5px;
         }
 
-        .search-wrapper {
+        .search-input-wrapper {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         .search-box {
@@ -223,7 +206,7 @@
             display: flex;
             align-items: center;
             background-color: var(--white);
-            border: 2px solid #E0E0E0;
+            border: 1px solid #E0E0E0;
             border-radius: 8px;
             padding: 8px 15px;
             transition: border-color 0.3s;
@@ -237,7 +220,7 @@
             border: none;
             outline: none;
             flex-grow: 1;
-            font-size: 1.1rem;
+            font-size: 1rem;
             padding: 8px 0;
             color: var(--text-dark);
         }
@@ -249,29 +232,29 @@
         .search-icon-btn {
             background-color: var(--light-blue-bg);
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--brand-blue);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .help-icon-box {
+            color: var(--brand-blue);
+            font-size: 1.2rem;
+            font-weight: bold;
+            background-color: var(--light-blue-bg);
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--brand-blue);
-            font-size: 1.2rem;
             cursor: pointer;
-        }
-
-        .help-icon {
-            color: var(--brand-blue);
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--light-blue-bg);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-weight: bold;
         }
 
         /* Brand Selection Grid */
@@ -303,7 +286,8 @@
             cursor: pointer;
             transition: all 0.2s ease;
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            height: 120px;
+            height: 100px;
+            text-decoration: none;
         }
 
         .brand-card:hover {
@@ -312,32 +296,19 @@
             transform: translateY(-2px);
         }
 
-        .brand-card img {
-            max-height: 40px;
-            max-width: 80%;
-            object-fit: contain;
-            filter: grayscale(100%);
-            opacity: 0.7;
-            transition: all 0.2s;
-        }
-
-        .brand-card:hover img {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-
-        /* Text fallbacks for brands without easy image links */
+        /* Text fallbacks for brands */
         .brand-text {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            color: #666;
+            color: #555;
             letter-spacing: 1px;
+            text-align: center;
         }
         
         .brand-text.apple {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-weight: 600;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
         }
 
         /* --- FOOTER --- */
@@ -350,32 +321,31 @@
             margin-top: 40px;
         }
 
-        /* --- MEDIA QUERIES (Mobile Responsiveness) --- */
+        /* --- MEDIA QUERIES --- */
         @media (max-width: 600px) {
             .section-header h2 {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
             
-            .search-wrapper {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .help-icon {
-                display: none; /* Hide help icon on very small screens to save space */
+            .brand-grid {
+                gap: 10px;
             }
 
             .brand-card {
-                height: 100px;
+                height: 90px;
                 padding: 20px 10px;
             }
             
             .brand-text {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
             
             .brand-text.apple {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+            }
+            
+            .help-icon-box {
+                display: none; /* Hide help icon on very small screens */
             }
         }
     </style>
@@ -396,7 +366,7 @@
                 <span class="step-label">Devices</span>
             </div>
             <div class="step active">2
-                <span class="step-label" style="color: var(--brand-blue); font-weight: bold;">Repairs</span>
+                <span class="step-label">Repairs</span>
             </div>
             <div class="step">3
                 <span class="step-label">Finalize</span>
@@ -409,25 +379,19 @@
         
         <!-- Section Header with Back Button -->
         <div class="section-header">
-            <div class="header-left">
-                <a href="index.html" class="back-btn">←</a>
-                <h2>Which <strong>model</strong> do you have?</h2>
-            </div>
-            <div class="header-right">
-                <span>🇿🇲</span> <!-- Changed to Zambian flag -->
-                <span>▼</span>
-            </div>
+            <a href="index.html" class="back-btn">←</a>
+            <h2>Which <strong>brand</strong> do you have?</h2>
         </div>
 
         <!-- Search Box -->
-        <div class="search-container">
+        <div class="search-container-box">
             <p><span>●</span> Type in your <strong>brand, model or model code.</strong></p>
-            <div class="search-wrapper">
+            <div class="search-input-wrapper">
                 <div class="search-box">
-                    <input type="text" id="modelSearch" placeholder="e.g., iPhone 12 Pro Max, Samsung A12, TECNO Spark">
+                    <input type="text" id="modelSearch" placeholder="e.g., iPhone 12 Pro Max, Samsung A12">
                     <button class="search-icon-btn" onclick="searchModel()">🔍</button>
                 </div>
-                <div class="help-icon" title="Need help finding your model? Check the back of your phone or in Settings > About Phone.">?</div>
+                <div class="help-icon-box" title="Need help finding your model?">?</div>
             </div>
         </div>
 
@@ -435,55 +399,55 @@
         <p class="brand-selection-header"><span>●</span> Or select your <strong>brand</strong></p>
         
         <div class="brand-grid">
-            <!-- PRIORITY BRANDS FOR ZAMBIA (Based on your data) -->
+            <!-- PRIORITY BRANDS FOR ZAMBIA -->
             
-            <div class="brand-card" onclick="selectBrand('Samsung')">
+            <a href="samsung.html" class="brand-card">
                 <div class="brand-text">SAMSUNG</div>
-            </div>
+            </a>
             
-            <div class="brand-card" onclick="selectBrand('TECNO')">
+            <a href="tecno.html" class="brand-card">
                 <div class="brand-text">TECNO</div>
-            </div>
+            </a>
 
-            <div class="brand-card" onclick="selectBrand('Infinix')">
+            <a href="infinix.html" class="brand-card">
                 <div class="brand-text">Infinix</div>
-            </div>
+            </a>
 
-            <div class="brand-card" onclick="selectBrand('iPhone / Apple')">
+            <a href="apple.html" class="brand-card">
                 <div class="brand-text apple">Apple</div>
-            </div>
+            </a>
 
-            <div class="brand-card" onclick="selectBrand('itel')">
+            <a href="itel.html" class="brand-card">
                 <div class="brand-text" style="text-transform: lowercase;">itel</div>
-            </div>
+            </a>
 
-            <div class="brand-card" onclick="selectBrand('Huawei')">
+            <a href="huawei.html" class="brand-card">
                 <div class="brand-text">HUAWEI</div>
-            </div>
+            </a>
 
-            <div class="brand-card" onclick="selectBrand('Xiaomi / Redmi')">
+            <a href="xiaomi.html" class="brand-card">
                 <div class="brand-text">XIAOMI</div>
-            </div>
+            </a>
 
-            <div class="brand-card" onclick="selectBrand('OPPO')">
+            <a href="oppo.html" class="brand-card">
                 <div class="brand-text">OPPO</div>
-            </div>
+            </a>
 
-            <div class="brand-card" onclick="selectBrand('vivo')">
+            <a href="vivo.html" class="brand-card">
                 <div class="brand-text" style="text-transform: lowercase;">vivo</div>
-            </div>
+            </a>
 
-            <div class="brand-card" onclick="selectBrand('Nokia')">
+            <a href="nokia.html" class="brand-card">
                 <div class="brand-text">NOKIA</div>
-            </div>
+            </a>
 
-            <div class="brand-card" onclick="selectBrand('HONOR')">
+            <a href="honor.html" class="brand-card">
                 <div class="brand-text">HONOR</div>
-            </div>
+            </a>
 
-            <div class="brand-card" onclick="selectBrand('realme')">
+            <a href="realme.html" class="brand-card">
                 <div class="brand-text" style="text-transform: lowercase;">realme</div>
-            </div>
+            </a>
 
         </div>
 
@@ -508,15 +472,6 @@
             }
         }
 
-        // Function to handle clicking a Brand Card
-        function selectBrand(brand) {
-            // In a real app, this would take you to Step 3 (Choose Repair Type)
-            alert(`You selected: ${brand}\n\n(In a full app, this would take you to Step 3 - Repairs)`);
-            
-            // OPTIONAL: You can add logic here to automatically move the progress bar
-            // or change the page content to show the specific repair types for that brand.
-        }
-
         // Allow pressing "Enter" in the search box
         document.getElementById('modelSearch').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
@@ -526,4 +481,4 @@
     </script>
 
 </body>
-    </html>
+</html>
